@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "rules": {
+    "declaration-empty-line-before": null,
+    "no-missing-end-of-source-newline": null,
+    "no-eol-whitespace": null,
+    "rule-empty-line-before" : null
+  }
+}

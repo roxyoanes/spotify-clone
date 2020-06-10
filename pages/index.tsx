@@ -1,17 +1,26 @@
-import { FC } from "react";
-import React from "react";
+import { FC, useState } from "react";
+import { Global, css } from "@emotion/core";
+import styled from "@emotion/styled";
+
 import Sidebar from "../App/Sidebar";
 import Playlists from "../App/Playlists";
 
+const StyledContainer = styled.div`
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 1fr;
+`;
+
 const Home: FC = () => {
-  const [openSidebar, setOpenSidebar] = React.useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
 
   return (
-    <div className="container">
+    <StyledContainer>
       {openSidebar ? (
         <>
           <Sidebar />
@@ -20,23 +29,20 @@ const Home: FC = () => {
       ) : (
         <Playlists toggleSidebar={toggleSidebar} />
       )}
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          display: grid;
-          grid-template-columns: 1fr 10fr;
-          grid-template-rows: 1fr;
-        }
-      `}</style>
 
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0 !important;
-        }
-      `}</style>
-    </div>
+      <Global
+        styles={css`
+          html,
+          body {
+            padding: 0;
+            margin: 0 !important;
+          }
+          a {
+            text-decoration: none;
+          }
+        `}
+      />
+    </StyledContainer>
   );
 };
 

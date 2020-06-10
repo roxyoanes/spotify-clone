@@ -1,4 +1,3 @@
-import React from "react";
 import { FC } from "react";
 
 interface IProps {
@@ -10,7 +9,6 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
     <div className="playlists-container">
       <p>playlists</p>
       <button onClick={toggleSidebar}>Open</button>
-      <style jsx>{``}</style>
     </div>
   );
 };
