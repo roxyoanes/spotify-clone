@@ -8,7 +8,7 @@ import Playlists from "../App/Playlists";
 const StyledContainer = styled.div`
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 4fr 8fr;
   grid-template-rows: 1fr;
 `;
 
@@ -36,9 +36,15 @@ const Home: FC = () => {
           body {
             padding: 0;
             margin: 0 !important;
+            font-family: "arial", sans-serif;
           }
           a {
             text-decoration: none;
+            cursor: pointer;
+            color: #b3b3b3;
+            &:hover {
+              color: #fff;
+            }
           }
         `}
       />
