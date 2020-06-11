@@ -1,9 +1,13 @@
 import { FC } from "react";
 import StyledSidebar from "../styles/sidebar";
 
-const Sidebar: FC = () => {
+interface IProps {
+  openSidebar: boolean;
+}
+
+const Sidebar: FC<IProps> = ({ openSidebar }) => {
   return (
-    <StyledSidebar>
+    <StyledSidebar opensidebar={openSidebar}>
       <div className="logo-container">
         <img className="logo" src="/spotify.svg" alt="logo" />
       </div>

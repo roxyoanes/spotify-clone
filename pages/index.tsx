@@ -21,14 +21,8 @@ const Home: FC = () => {
 
   return (
     <StyledContainer>
-      {openSidebar ? (
-        <>
-          <Sidebar />
-          <Playlists toggleSidebar={toggleSidebar} />
-        </>
-      ) : (
-        <Playlists toggleSidebar={toggleSidebar} />
-      )}
+      <Sidebar openSidebar={openSidebar} />
+      <Playlists toggleSidebar={toggleSidebar} />
 
       <Global
         styles={css`

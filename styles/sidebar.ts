@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 
-const StyledSidebar = styled.div`
+interface IProps {
+  opensidebar: boolean;
+}
+
+const StyledSidebar = styled.div<IProps>`
   background-color: black;
   color: #b3b3b3;
+  display: ${({ opensidebar }) => (opensidebar === true ? "block" : "none")};
 
   .logo-container {
     display: flex;
