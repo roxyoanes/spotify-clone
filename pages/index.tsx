@@ -5,11 +5,16 @@ import styled from "@emotion/styled";
 import Sidebar from "../App/Sidebar";
 import Playlists from "../App/Playlists";
 
-const StyledContainer = styled.div`
+interface IProps {
+  opensidebar: boolean;
+}
+
+const StyledContainer = styled.div<IProps>`
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 4fr 8fr;
   grid-template-rows: 1fr;
+  grid-template-columns: ${({ opensidebar }) =>
+    opensidebar === true ? "4fr 8fr" : "1fr"};
 `;
 
 const Home: FC = () => {
@@ -20,7 +25,7 @@ const Home: FC = () => {
   };
 
   return (
-    <StyledContainer>
+    <StyledContainer opensidebar={openSidebar}>
       <Sidebar openSidebar={openSidebar} />
       <Playlists toggleSidebar={toggleSidebar} />
 
