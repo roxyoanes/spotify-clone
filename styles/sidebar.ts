@@ -40,8 +40,6 @@ const StyledSidebar = styled.div<IProps>`
 
   .footer {
     position: fixed;
-    bottom: 0;
-    width: 100px;
     text-align: center;
     padding: 12px 0;
   }
