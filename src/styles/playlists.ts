@@ -18,7 +18,8 @@ const StyledPlaylists = styled.div`
     margin: 10px;
     z-index: 99;
     position: static;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
   }
   .open-list,
   .user-menu-list {
@@ -26,7 +27,8 @@ const StyledPlaylists = styled.div`
     transition: height 0.3s;
   }
   .user-menu {
-    margin-left: 180px;
+    display: flex;
+    justify-content: flex-end;
   }
   .list-item {
     font-size: 14px;
