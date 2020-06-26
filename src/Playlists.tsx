@@ -1,15 +1,20 @@
 import { FC, useState } from "react";
+import { useSelector } from "react-redux";
 import StyledPlaylists from "./styles/playlists";
 import Scrollspy from "react-scrollspy";
+import Link from "next/link";
+import { withRedux } from "./redux/redux";
 
 interface IProps {
   toggleSidebar: () => void;
 }
 
-const Playlists: FC<IProps> = ({ toggleSidebar }) => {
+const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const token = useSelector((state) => state.spotify.access_token);
 
+  console.log("aaafff", props);
   const toggleListOptions = () => {
     setOpenList(!openList);
   };
@@ -25,7 +30,12 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
             <button onClick={toggleSidebar}>Open</button>
           </div>
           <div>
-            <button onClick={toggleListOptions}>List</button>
+            {token ? (
+              <button className="list" onClick={toggleListOptions}>
+                List
+              </button>
+            ) : null}
+
             {openList ? (
               <nav className="open-list">
                 <Scrollspy
@@ -33,7 +43,7 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
                     display: "flex",
                     flexDirection: "column",
                     padding: "0",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                     margin: "0",
                   }}
                   items={["Playlists", "Podcasts", "Artists", "Albums"]}
@@ -59,11 +69,21 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
           </div>
           <div className="user-menu">
             <div>
-              <button onClick={toggleMenuUser}>User</button>
+              {!token ? (
+                <Link href="/[login]" as={`/login`}>
+                  <a>Login</a>
+                </Link>
+              ) : null}
+
+              {token ? (
+                <button className="user" onClick={toggleMenuUser}>
+                  User
+                </button>
+              ) : null}
 
               {openUserMenu ? (
                 <nav className="user-menu-list">
-                  <Scrollspy
+                  <div
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -71,25 +91,26 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
                       alignItems: "center",
                       margin: "0",
                     }}
-                    items={["Account", "Profile", "Logout"]}
-                    currentClassName="menu-is-current"
                   >
-                    {[
-                      { value: "Account", href: "#account" },
-                      { value: "Profile", href: "#profile" },
-                      { value: "Logout", href: "#logout" },
-                    ].map((navElement) => (
-                      <a
-                        href={navElement.href}
-                        key={navElement.value}
-                        className="list-item"
-                      >
-                        {navElement.value}
-                      </a>
-                    ))}
-                  </Scrollspy>
+                    <Link href="/[profile]" as={`/profile`}>
+                      <a>Profile</a>
+                    </Link>
+                  </div>
                 </nav>
               ) : null}
+            </div>
+          </div>
+        </div>
+        <div className="playlist-container">
+          <div className="cards-container">
+            <div className="card">
+              {props.newReleases.map((obj) => (
+                <div key="obj.id">
+                  <img src={obj.images[1].url} alt="artist-img" />
+                  <h5>{obj.artists[0].name}</h5>
+                  <h5>{obj.name}</h5>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -98,4 +119,4 @@ const Playlists: FC<IProps> = ({ toggleSidebar }) => {
   );
 };
 
-export default Playlists;
+export default withRedux(Playlists);

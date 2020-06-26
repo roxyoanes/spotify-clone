@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 
 import Sidebar from "../src/Sidebar";
 import Playlists from "../src/Playlists";
+import { spotifyApi } from "../src/server/spotifyApi";
+import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -17,7 +19,7 @@ const StyledContainer = styled.div<IStyledProps>`
     opensidebar === true ? "4fr 8fr" : "1fr"};
 `;
 
-const Home = () => {
+const Home = (props) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const toggleSidebar = () => {
@@ -27,7 +29,7 @@ const Home = () => {
   return (
     <StyledContainer opensidebar={openSidebar}>
       <Sidebar openSidebar={openSidebar} />
-      <Playlists toggleSidebar={toggleSidebar} />
+      <Playlists toggleSidebar={toggleSidebar} props={props} />
 
       <Global
         styles={css`
@@ -51,4 +53,22 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
+  const store = reduxStore.getState();
+  if (store.spotify.access_token) {
+    spotifyApi.setAccessToken(store.spotify.access_token);
+    const releasesList = await spotifyApi.getNewReleases({
+      limit: 5,
+      offset: 0,
+      country: "ES",
+    });
+    const data = await spotifyApi.getNewReleases([
+      releasesList.body.albums.items.map((el) => el.id),
+    ]);
+    const newReleases = data.body.albums.items.slice(0, 5);
+
+    return { newReleases };
+  }
+};
+
+export default withRedux(Home);
