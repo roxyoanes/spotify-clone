@@ -16,7 +16,7 @@ const StyledContainer = styled.div<IStyledProps>`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
-    opensidebar === true ? "4fr 8fr" : "1fr"};
+    opensidebar === true ? "2fr 8fr" : "1fr"};
 `;
 
 const Home = (props) => {

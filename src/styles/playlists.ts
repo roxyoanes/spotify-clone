@@ -15,16 +15,16 @@ const StyledPlaylists = styled.div`
   }
 
   .navbar-container {
-    margin: 10px;
-    z-index: 99;
-    position: static;
+    padding: 10px 0;
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
+    background-color: black;
   }
   .open-list,
   .user-menu-list {
     margin-top: 10px;
     transition: height 0.3s;
+    position: absolute;
   }
   .user-menu {
     display: flex;
@@ -34,6 +34,48 @@ const StyledPlaylists = styled.div`
     font-size: 14px;
     font-weight: 700;
     padding: 5px 0;
+  }
+  .login {
+    background-color: #fff;
+    color: black;
+    font-size: 10px;
+    padding: 8px 24px;
+  }
+  .card-title {
+    margin: 20px;
+    font-size: 20px;
+    color: white;
+  }
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(5, 0.5fr);
+    grid-gap: 30px;
+    margin: 0 20px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #212121;
+    border-radius: 15px;
+    padding: 15px 0;
+  }
+  .text-wrapper {
+    text-align: left;
+  }
+  .card-img {
+    width: 80%;
+    height: auto;
+  }
+  .artist-name {
+    color: white;
+    font-size: 15px;
+    margin: 25px 0 14px;
+  }
+  .title {
+    font-size: 12px;
+    font-weight: 200;
   }
 `;
 

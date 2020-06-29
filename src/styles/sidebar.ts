@@ -8,6 +8,7 @@ const StyledSidebar = styled.div<IProps>`
   background-color: black;
   color: #b3b3b3;
   display: ${({ opensidebar }) => (opensidebar === true ? "block" : "none")};
+  /* z-index: 80; */
 
   .logo-container {
     display: flex;

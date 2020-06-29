@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NextPage } from "next";
+import Router from "next/router";
 
 import { authorizeURL } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
@@ -9,7 +10,7 @@ interface IProps {
   tokenUrl: string;
 }
 
-const Home: NextPage<IProps> = ({ tokenUrl }) => {
+const Login: NextPage<IProps> = ({ tokenUrl }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,12 +36,12 @@ const Home: NextPage<IProps> = ({ tokenUrl }) => {
     }
   }, []);
 
-  return <div>hello</div>;
+  return <button onClick={() => Router.push("/")}>Click me</button>;
 };
 
-Home.getInitialProps = ({ reduxStore }: IReduxStoreProps) => {
+Login.getInitialProps = ({ reduxStore }: IReduxStoreProps) => {
   // Pass data to the page via props
   return { tokenUrl: authorizeURL };
 };
 
-export default withRedux(Home);
+export default withRedux(Login);

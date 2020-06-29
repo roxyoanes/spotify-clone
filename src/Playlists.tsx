@@ -24,7 +24,7 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
 
   return (
     <StyledPlaylists>
-      <div className="playlists-container">
+      <div className="main-container">
         <div className="navbar-container">
           <div>
             <button onClick={toggleSidebar}>Open</button>
@@ -102,17 +102,26 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
           </div>
         </div>
         <div className="playlist-container">
-          <div className="cards-container">
-            <div className="card">
-              {props.newReleases.map((obj) => (
-                <div key="obj.id">
-                  <img src={obj.images[1].url} alt="artist-img" />
-                  <h5>{obj.artists[0].name}</h5>
-                  <h5>{obj.name}</h5>
-                </div>
-              ))}
-            </div>
-          </div>
+          {token ? (
+            <>
+              <h4 className="card-title">New Releases</h4>
+              <div className="cards-container">
+                {props.newReleases.map((obj) => (
+                  <div className="card" key="obj.name">
+                    <img
+                      className="card-img"
+                      src={obj.images[1].url}
+                      alt="artist-img"
+                    />
+                    <div className="text-wrapper">
+                      <h5 className="artist-name">{obj.artists[0].name}</h5>
+                      <h5 className="title">{obj.name}</h5>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </StyledPlaylists>
