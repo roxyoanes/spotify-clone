@@ -5,8 +5,15 @@ import Scrollspy from "react-scrollspy";
 import Link from "next/link";
 import { withRedux } from "./redux/redux";
 
+import CategoryHipHop from "./CategoryHipHop";
+import CategoryChill from "./CategoryChill";
+import CategoryFeatured from "./CategoryFeatured";
+import CategoryParty from "./CategoryParty";
+import CategoryNewReleases from "./CategoryNewReleases";
+
 interface IProps {
   toggleSidebar: () => void;
+  props: any;
 }
 
 const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
@@ -101,28 +108,40 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
             </div>
           </div>
         </div>
-        <div className="playlist-container">
-          {token ? (
-            <>
+        {token ? (
+          <div className="playlist-container">
+            <div>
               <h4 className="card-title">New Releases</h4>
               <div className="cards-container">
-                {props.newReleases.map((obj) => (
-                  <div className="card" key="obj.name">
-                    <img
-                      className="card-img"
-                      src={obj.images[1].url}
-                      alt="artist-img"
-                    />
-                    <div className="text-wrapper">
-                      <h5 className="artist-name">{obj.artists[0].name}</h5>
-                      <h5 className="title">{obj.name}</h5>
-                    </div>
-                  </div>
-                ))}
+                <CategoryNewReleases category={props.NewReleases} />
               </div>
-            </>
-          ) : null}
-        </div>
+            </div>
+            <div>
+              <h4 className="card-title">Party</h4>
+              <div className="cards-container">
+                <CategoryParty category={props.categoryParty} />
+              </div>
+            </div>
+            <div>
+              <h4 className="card-title">Featured Playlists</h4>
+              <div className="cards-container">
+                <CategoryFeatured category={props.CategoryFeatured} />
+              </div>
+            </div>
+            <div>
+              <h4 className="card-title">Chill</h4>
+              <div className="cards-container">
+                <CategoryChill category={props.categoryChill} />
+              </div>
+            </div>
+            <div>
+              <h4 className="card-title">Hip Hop</h4>
+              <div className="cards-container">
+                <CategoryHipHop category={props.categoryHipHop} />
+              </div>
+            </div>
+          </div>
+        ) : null}
       </div>
     </StyledPlaylists>
   );

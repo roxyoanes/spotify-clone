@@ -60,7 +60,6 @@ Profile.getInitialProps = async () => {
   const profileData = await spotifyApi.getMe();
 
   return profileData;
-  console.log("ddd", profileData);
 };
 
 export default Profile;

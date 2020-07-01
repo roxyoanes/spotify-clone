@@ -16,12 +16,14 @@ const StyledContainer = styled.div<IStyledProps>`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
-    opensidebar === true ? "2fr 8fr" : "1fr"};
+    opensidebar === true ? "260px 1fr" : "1fr"};
+  overflow-y: auto;
 `;
 
 const Home = (props) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
+  console.log("ggg", props);
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
@@ -67,7 +69,36 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
     ]);
     const newReleases = data.body.albums.items.slice(0, 5);
 
-    return { newReleases };
+    const category = await spotifyApi.getPlaylistsForCategory("party", {
+      limit: 5,
+      offset: 0,
+    });
+    const categoryParty = category.body.playlists.items;
+
+    const featured = await spotifyApi.getFeaturedPlaylists({
+      limit: 5,
+      offset: 1,
+    });
+    const categoryFeatured = featured.body.playlists.items;
+
+    const chillPlaylist = await spotifyApi.getPlaylistsForCategory("chill", {
+      limit: 5,
+      offset: 0,
+    });
+    const categoryChill = chillPlaylist.body.playlists.items;
+
+    const hipHopPlaylist = await spotifyApi.getPlaylistsForCategory("hiphop", {
+      limit: 5,
+      offset: 0,
+    });
+    const categoryHipHop = hipHopPlaylist.body.playlists.items;
+    return {
+      newReleases,
+      categoryParty,
+      categoryFeatured,
+      categoryChill,
+      categoryHipHop,
+    };
   }
 };
 

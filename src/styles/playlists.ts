@@ -13,7 +13,6 @@ const StyledPlaylists = styled.div`
     font-weight: 600;
     margin: 0 5px;
   }
-
   .navbar-container {
     padding: 10px 0;
     display: grid;
@@ -48,34 +47,33 @@ const StyledPlaylists = styled.div`
   }
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(5, 0.5fr);
+    grid-template-columns: repeat(5, 220px);
+    justify-content: center;
     grid-gap: 30px;
     margin: 0 20px;
   }
   .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: #212121;
     border-radius: 15px;
     padding: 15px 0;
-  }
-  .text-wrapper {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .card-img {
-    width: 80%;
-    height: auto;
+    width: 160px;
+    height: 165px;
   }
-  .artist-name {
+  .playlist-name {
     color: white;
     font-size: 15px;
     margin: 25px 0 14px;
   }
-  .title {
+  .description {
     font-size: 12px;
     font-weight: 200;
+    width: 160px;
+    word-wrap: break-word;
   }
 `;
 

@@ -26,16 +26,17 @@ const StyledSidebar = styled.div<IProps>`
     display: flex;
     flex-direction: column;
     padding: 0 0 0 20px;
+    margin: 20px 0;
   }
 
   .link {
-    font-size: 14px;
+    font-size: 15px;
     padding: 4px 0;
   }
 
   .title {
     text-align: left;
-    font-family: 14px;
+    font-size: 14px;
     margin: 15px 5px 20px 15px;
   }
 
