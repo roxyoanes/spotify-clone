@@ -92,12 +92,26 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
       offset: 0,
     });
     const categoryHipHop = hipHopPlaylist.body.playlists.items;
+
+    const popPlaylist = await spotifyApi.getPlaylistsForCategory("pop", {
+      limit: 5,
+      offset: 0,
+    });
+    const categoryPop = popPlaylist.body.playlists.items;
+
+    const workout = await spotifyApi.getPlaylistsForCategory("workout", {
+      limit: 5,
+      offset: 0,
+    });
+    const categoryWorkout = workout.body.playlists.items;
     return {
       newReleases,
       categoryParty,
       categoryFeatured,
       categoryChill,
       categoryHipHop,
+      categoryPop,
+      categoryWorkout,
     };
   }
 };

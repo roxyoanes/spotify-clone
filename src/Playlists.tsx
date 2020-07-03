@@ -10,6 +10,8 @@ import CategoryChill from "./CategoryChill";
 import CategoryFeatured from "./CategoryFeatured";
 import CategoryParty from "./CategoryParty";
 import CategoryNewReleases from "./CategoryNewReleases";
+import CategoryHouse from "./CategoryPop";
+import CategoryWorkout from "./CategoryWorkout";
 
 interface IProps {
   toggleSidebar: () => void;
@@ -21,7 +23,6 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const token = useSelector((state) => state.spotify.access_token);
 
-  console.log("aaafff", props);
   const toggleListOptions = () => {
     setOpenList(!openList);
   };
@@ -113,7 +114,7 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
             <div>
               <h4 className="card-title">New Releases</h4>
               <div className="cards-container">
-                <CategoryNewReleases category={props.NewReleases} />
+                <CategoryNewReleases category={props.newReleases} />
               </div>
             </div>
             <div>
@@ -125,7 +126,7 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
             <div>
               <h4 className="card-title">Featured Playlists</h4>
               <div className="cards-container">
-                <CategoryFeatured category={props.CategoryFeatured} />
+                <CategoryFeatured category={props.categoryFeatured} />
               </div>
             </div>
             <div>
@@ -138,6 +139,18 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
               <h4 className="card-title">Hip Hop</h4>
               <div className="cards-container">
                 <CategoryHipHop category={props.categoryHipHop} />
+              </div>
+            </div>
+            <div>
+              <h4 className="card-title">Pop</h4>
+              <div className="cards-container">
+                <CategoryHouse category={props.categoryPop} />
+              </div>
+            </div>
+            <div>
+              <h4 className="card-title">Workout</h4>
+              <div className="cards-container">
+                <CategoryWorkout category={props.categoryWorkout} />
               </div>
             </div>
           </div>
