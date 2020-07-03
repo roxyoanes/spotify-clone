@@ -64,6 +64,9 @@ const StyledPlaylists = styled.div`
     width: 160px;
     height: 165px;
   }
+  .text-wrapper {
+    color: #b3b3b3;
+  }
   .playlist-name {
     color: white;
     font-size: 15px;

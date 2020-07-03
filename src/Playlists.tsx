@@ -5,13 +5,7 @@ import Scrollspy from "react-scrollspy";
 import Link from "next/link";
 import { withRedux } from "./redux/redux";
 
-import CategoryHipHop from "./CategoryHipHop";
-import CategoryChill from "./CategoryChill";
-import CategoryFeatured from "./CategoryFeatured";
-import CategoryParty from "./CategoryParty";
-import CategoryNewReleases from "./CategoryNewReleases";
-import CategoryHouse from "./CategoryPop";
-import CategoryWorkout from "./CategoryWorkout";
+import Category from "./Category";
 
 interface IProps {
   toggleSidebar: () => void;
@@ -114,43 +108,43 @@ const Playlists: FC<IProps> = ({ toggleSidebar, props }) => {
             <div>
               <h4 className="card-title">New Releases</h4>
               <div className="cards-container">
-                <CategoryNewReleases category={props.newReleases} />
+                <Category category={props.newReleases} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Party</h4>
               <div className="cards-container">
-                <CategoryParty category={props.categoryParty} />
+                <Category category={props.categoryParty} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Featured Playlists</h4>
               <div className="cards-container">
-                <CategoryFeatured category={props.categoryFeatured} />
+                <Category category={props.categoryFeatured} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Chill</h4>
               <div className="cards-container">
-                <CategoryChill category={props.categoryChill} />
+                <Category category={props.categoryChill} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Hip Hop</h4>
               <div className="cards-container">
-                <CategoryHipHop category={props.categoryHipHop} />
+                <Category category={props.categoryHipHop} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Pop</h4>
               <div className="cards-container">
-                <CategoryHouse category={props.categoryPop} />
+                <Category category={props.categoryPop} />
               </div>
             </div>
             <div>
               <h4 className="card-title">Workout</h4>
               <div className="cards-container">
-                <CategoryWorkout category={props.categoryWorkout} />
+                <Category category={props.categoryWorkout} />
               </div>
             </div>
           </div>

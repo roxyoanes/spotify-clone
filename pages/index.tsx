@@ -17,7 +17,7 @@ const StyledContainer = styled.div<IStyledProps>`
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "260px 1fr" : "1fr"};
-  overflow-y: auto;
+  overflow-y: visible;
 `;
 
 const Home = (props) => {
