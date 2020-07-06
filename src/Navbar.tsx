@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-
 import Scrollspy from "react-scrollspy";
 import Link from "next/link";
+import { useState, FC } from "react";
+import { useSelector } from "react-redux";
 
 import StyledNavbar from "./styles/navbar";
 
@@ -10,9 +9,10 @@ interface IProps {
   toggleSidebar: () => void;
 }
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar: FC<IProps> = ({ toggleSidebar }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+
   const token = useSelector((state) => state.spotify.access_token);
 
   const toggleListOptions = () => {
@@ -91,11 +91,9 @@ const Navbar = ({ toggleSidebar }) => {
                     margin: "0",
                   }}
                 >
-                  {token ? (
-                    <Link href="/[profile]" as={`/profile`}>
-                      <a>Profile</a>
-                    </Link>
-                  ) : null}
+                  <Link href="/[profile]" as={`/profile`}>
+                    <a>Profile</a>
+                  </Link>
                 </div>
               </nav>
             ) : null}

@@ -6,6 +6,7 @@ import Sidebar from "../src/Sidebar";
 import Playlists from "../src/Playlists";
 import { spotifyApi } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
+import Navbar from "../src/Navbar";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -17,7 +18,8 @@ const StyledContainer = styled.div<IStyledProps>`
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "260px 1fr" : "1fr"};
-  overflow-y: visible;
+  overflow-y: hidden;
+  background-color: #131413;
 `;
 
 const Home = (props) => {
@@ -29,29 +31,32 @@ const Home = (props) => {
   };
 
   return (
-    <StyledContainer opensidebar={openSidebar}>
-      <Sidebar openSidebar={openSidebar} />
-      <Playlists toggleSidebar={toggleSidebar} props={props} />
+    <>
+      <Navbar toggleSidebar={toggleSidebar} />
+      <StyledContainer opensidebar={openSidebar}>
+        <Sidebar openSidebar={openSidebar} />
+        <Playlists props={props} />
 
-      <Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0 !important;
-            font-family: "arial", sans-serif;
-          }
-          a {
-            text-decoration: none;
-            cursor: pointer;
-            color: #b3b3b3;
-            &:hover {
-              color: #fff;
+        <Global
+          styles={css`
+            html,
+            body {
+              padding: 0;
+              margin: 0 !important;
+              font-family: "arial", sans-serif;
             }
-          }
-        `}
-      />
-    </StyledContainer>
+            a {
+              text-decoration: none;
+              cursor: pointer;
+              color: #b3b3b3;
+              &:hover {
+                color: #fff;
+              }
+            }
+          `}
+        />
+      </StyledContainer>
+    </>
   );
 };
 
