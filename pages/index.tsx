@@ -32,7 +32,7 @@ const Home = (props) => {
 
   return (
     <>
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar toggleSidebar={toggleSidebar} props={props} />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
         <Playlists props={props} />
@@ -109,6 +109,7 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
       offset: 0,
     });
     const categoryWorkout = workout.body.playlists.items;
+    const profileData = await spotifyApi.getMe();
     return {
       newReleases,
       categoryParty,
@@ -117,6 +118,7 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
       categoryHipHop,
       categoryPop,
       categoryWorkout,
+      profileData,
     };
   }
 };

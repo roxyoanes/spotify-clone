@@ -8,13 +8,15 @@ import Router from "next/router";
 
 interface IProps {
   toggleSidebar: () => void;
+  props: any;
 }
 
-const Navbar: FC<IProps> = ({ toggleSidebar }) => {
+const Navbar: FC<IProps> = ({ toggleSidebar, props }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
   const token = useSelector((state) => state.spotify.access_token);
+  const profileInfo = props.profileData;
 
   const toggleListOptions = () => {
     setOpenList(!openList);
@@ -77,7 +79,12 @@ const Navbar: FC<IProps> = ({ toggleSidebar }) => {
 
             {token ? (
               <button className="user" onClick={toggleMenuUser}>
-                User
+                <img
+                  className="user-pic"
+                  src={profileInfo.body.images[0].url}
+                  alt="profile-pic"
+                />
+                {profileInfo.body.display_name}
               </button>
             ) : null}
 

@@ -29,6 +29,16 @@ const StyledNavbar = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+  .user {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+  }
+  .user-pic {
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
   .list {
     display: none;
   }
