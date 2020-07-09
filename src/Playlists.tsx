@@ -13,7 +13,7 @@ interface IProps {
 
 const Playlists: FC<IProps> = ({ props }) => {
   const token = useSelector((state) => state.spotify.access_token);
-
+  console.log("pl", token);
   return (
     <StyledPlaylists>
       {token ? (

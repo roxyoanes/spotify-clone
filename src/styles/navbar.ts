@@ -29,6 +29,9 @@ const StyledNavbar = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+  .list {
+    display: none;
+  }
   .list-item {
     font-size: 14px;
     font-weight: 700;

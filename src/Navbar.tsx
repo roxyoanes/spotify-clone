@@ -4,6 +4,7 @@ import { useState, FC } from "react";
 import { useSelector } from "react-redux";
 
 import StyledNavbar from "./styles/navbar";
+import Router from "next/router";
 
 interface IProps {
   toggleSidebar: () => void;
@@ -91,9 +92,9 @@ const Navbar: FC<IProps> = ({ toggleSidebar }) => {
                     margin: "0",
                   }}
                 >
-                  <Link href="/[profile]" as={`/profile`}>
-                    <a>Profile</a>
-                  </Link>
+                  <button onClick={() => Router.push("/profile")}>
+                    Profile
+                  </button>
                 </div>
               </nav>
             ) : null}
