@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 import Sidebar from "../src/Sidebar";
 import UserProfile from "../src/UserProfile";
 import Navbar from "../src/Navbar";
+import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -23,8 +24,6 @@ const StyledContainer = styled.div<IStyledProps>`
 const Profile = (props: any) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
-  console.log(props);
-
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
@@ -33,7 +32,7 @@ const Profile = (props: any) => {
       <Navbar toggleSidebar={toggleSidebar} />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
-        <UserProfile />
+        <UserProfile props={props} />
 
         <Global
           styles={css`
@@ -58,11 +57,14 @@ const Profile = (props: any) => {
   );
 };
 
-Profile.getInitialProps = async () => {
-  const profileData = await spotifyApi.getMe();
-  console.log("ddd", profileData);
+Profile.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
+  const store = reduxStore.getState();
+  if (store.spotify.access_token) {
+    spotifyApi.setAccessToken(store.spotify.access_token);
 
-  return profileData;
+    const profileData = await spotifyApi.getMe();
+    return { profileData };
+  }
 };
 
-export default Profile;
+export default withRedux(Profile);
