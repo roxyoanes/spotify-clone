@@ -28,6 +28,12 @@ const Login: NextPage<IProps> = ({ tokenUrl }) => {
             payload: data,
           });
         })
+        .then(() => {
+          dispatch({
+            type: "SET_PROFILE",
+            payload: "dd",
+          });
+        })
         .catch((error) => error);
     } else {
       if (tokenUrl) {
