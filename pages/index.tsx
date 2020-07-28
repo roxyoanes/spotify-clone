@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
+import { NextPage } from "next";
 
 import Sidebar from "../src/Sidebar";
 import Playlists from "../src/Playlists";
 import { spotifyApi } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
+import { IAlbum } from "../src/types";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -22,7 +24,11 @@ const StyledContainer = styled.div<IStyledProps>`
   background-color: #131413;
 `;
 
-const Home = (props) => {
+interface IProps {
+  newReleases: IAlbum[];
+}
+
+const Home: NextPage<IProps> = (props) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   console.log("ggg", props);
@@ -32,10 +38,13 @@ const Home = (props) => {
 
   return (
     <>
-      <Navbar toggleSidebar={toggleSidebar} props={props} />
+      <Navbar toggleSidebar={toggleSidebar} props={props.profileData} />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
-        <Playlists props={props} />
+        <Playlists
+          newReleases={props.newReleases}
+          playlists={props.playlists}
+        />
 
         <Global
           styles={css`
@@ -60,8 +69,14 @@ const Home = (props) => {
   );
 };
 
+interface IPlaylists {
+  [key: string]: any; // change for playlists
+}
+
 Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
+  console.log("store", store);
+
   if (store.spotify.access_token) {
     spotifyApi.setAccessToken(store.spotify.access_token);
     const releasesList = await spotifyApi.getNewReleases({
@@ -72,52 +87,50 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
     const data = await spotifyApi.getNewReleases([
       releasesList.body.albums.items.map((el) => el.id),
     ]);
-    const newReleases = data.body.albums.items.slice(0, 5);
+    const newReleases: IAlbum[] = data.body.albums.items.slice(0, 5);
+
+    const playlists: IPlaylists = {};
 
     const category = await spotifyApi.getPlaylistsForCategory("party", {
       limit: 5,
       offset: 0,
     });
-    const categoryParty = category.body.playlists.items;
+    playlists.Party = category.body.playlists.items;
 
     const featured = await spotifyApi.getFeaturedPlaylists({
       limit: 5,
       offset: 1,
     });
-    const categoryFeatured = featured.body.playlists.items;
+    playlists.Featured = featured.body.playlists.items;
 
     const chillPlaylist = await spotifyApi.getPlaylistsForCategory("chill", {
       limit: 5,
       offset: 0,
     });
-    const categoryChill = chillPlaylist.body.playlists.items;
+    playlists.Chill = chillPlaylist.body.playlists.items;
 
     const hipHopPlaylist = await spotifyApi.getPlaylistsForCategory("hiphop", {
       limit: 5,
       offset: 0,
     });
-    const categoryHipHop = hipHopPlaylist.body.playlists.items;
+    playlists.HipHop = hipHopPlaylist.body.playlists.items;
 
     const popPlaylist = await spotifyApi.getPlaylistsForCategory("pop", {
       limit: 5,
       offset: 0,
     });
-    const categoryPop = popPlaylist.body.playlists.items;
+    playlists.Pop = popPlaylist.body.playlists.items;
 
     const workout = await spotifyApi.getPlaylistsForCategory("workout", {
       limit: 5,
       offset: 0,
     });
-    const categoryWorkout = workout.body.playlists.items;
+    playlists.Workout = workout.body.playlists.items;
+
     const profileData = await spotifyApi.getMe();
     return {
       newReleases,
-      categoryParty,
-      categoryFeatured,
-      categoryChill,
-      categoryHipHop,
-      categoryPop,
-      categoryWorkout,
+      playlists,
       profileData,
     };
   }

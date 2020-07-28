@@ -1,4 +1,12 @@
-const CategoryChill = ({ category }) => {
+import { FC } from "react";
+
+import { IAlbum } from "./types";
+
+interface IProps {
+  category: IAlbum[];
+}
+
+const Category: FC<IProps> = ({ category }) => {
   return (
     <>
       {category.map((obj) => (
@@ -18,4 +26,4 @@ const CategoryChill = ({ category }) => {
   );
 };
 
-export default CategoryChill;
+export default Category;

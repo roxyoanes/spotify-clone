@@ -6,16 +6,14 @@ import StyledUserProfile from "./styles/profile";
 interface IProps {
   props: any;
 }
-const UserProfile: FC<IProps> = ({ props }) => {
+const UserProfile: FC<IProps> = () => {
   const token = useSelector((state) => state.spotify.access_token);
-  console.log("props", props.profileData.body);
-  const profileInfo = props.profileData.body;
   return (
     <StyledUserProfile>
       {token ? (
         <div className="container">
           <div className="profile-card">
-            <img
+            {/* <img
               className="profile-pic"
               src={profileInfo.images[0].url}
               alt="profile-pic"
@@ -26,7 +24,7 @@ const UserProfile: FC<IProps> = ({ props }) => {
               <h6 className="followers">
                 {profileInfo.followers.total} Followers
               </h6>
-            </div>
+            </div> */}
           </div>
         </div>
       ) : null}
