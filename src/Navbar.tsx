@@ -5,19 +5,18 @@ import { useSelector } from "react-redux";
 
 import StyledNavbar from "./styles/navbar";
 import Router from "next/router";
+import { IProfileData } from "./types";
 
 interface IProps {
   toggleSidebar: () => void;
-  props: any;
+  profileData: IProfileData;
 }
 
-const Navbar: FC<IProps> = ({ toggleSidebar, props }) => {
+const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
   const token = useSelector((state) => state.spotify.access_token);
-  const profileInfo = props.profileData;
-
   const toggleListOptions = () => {
     setOpenList(!openList);
   };
@@ -81,10 +80,10 @@ const Navbar: FC<IProps> = ({ toggleSidebar, props }) => {
               <button className="user" onClick={toggleMenuUser}>
                 <img
                   className="user-pic"
-                  src={profileInfo.body.images[0].url}
+                  src={profileData.body.images[0].url}
                   alt="profile-pic"
                 />
-                {profileInfo.body.display_name}
+                {profileData.body.display_name}
               </button>
             ) : null}
 

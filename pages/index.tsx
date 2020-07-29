@@ -8,7 +8,8 @@ import Playlists from "../src/Playlists";
 import { spotifyApi } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
-import { IAlbum } from "../src/types";
+import { IAlbum, IPlaylist, IProfileData } from "../src/types";
+import { useSelector } from "react-redux";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -26,26 +27,26 @@ const StyledContainer = styled.div<IStyledProps>`
 
 interface IProps {
   newReleases: IAlbum[];
+  playlists: IPlaylists;
+  profileData: IProfileData;
 }
 
-const Home: NextPage<IProps> = (props) => {
+const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
+  const token = useSelector((state) => state.spotify.access_token);
 
-  console.log("ggg", props);
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
 
   return (
     <>
-      <Navbar toggleSidebar={toggleSidebar} props={props.profileData} />
+      <Navbar toggleSidebar={toggleSidebar} profileData={profileData} />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
-        <Playlists
-          newReleases={props.newReleases}
-          playlists={props.playlists}
-        />
-
+        {token ? (
+          <Playlists newReleases={newReleases} playlists={playlists} />
+        ) : null}
         <Global
           styles={css`
             html,
@@ -70,7 +71,7 @@ const Home: NextPage<IProps> = (props) => {
 };
 
 interface IPlaylists {
-  [key: string]: any; // change for playlists
+  [key: string]: IPlaylist[];
 }
 
 Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {

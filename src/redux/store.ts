@@ -5,6 +5,7 @@ import { IActions, ISpotifyTokens } from "./types";
 
 export interface IState {
   spotify: ISpotifyTokens;
+  profile: string;
 }
 
 const initialState: IState = {
@@ -12,14 +13,20 @@ const initialState: IState = {
     access_token: "",
     refresh_token: "",
   },
+  profile: "",
 };
 
 const reducer = (state: IState = initialState, action: IActions): IState => {
-  switch (action.type) {
+  switch (action.type as any) {
     case "SET_TOKEN":
       return {
         ...state,
         spotify: action.payload,
+      };
+    case "SET_PROFILE":
+      return {
+        ...state,
+        profile: action.payload,
       };
     default:
       return state;

@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { IAlbum } from "./types";
+import { IPlaylist } from "./types";
 
 interface IProps {
-  category: IAlbum[];
+  category: IPlaylist[];
 }
 
-const Category: FC<IProps> = ({ category }) => {
+const Categories: FC<IProps> = ({ category }) => {
   return (
     <>
       {category.map((obj) => (
@@ -26,4 +26,4 @@ const Category: FC<IProps> = ({ category }) => {
   );
 };
 
-export default Category;
+export default Categories;
