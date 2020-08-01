@@ -6,6 +6,8 @@ import Sidebar from "../src/Sidebar";
 import UserProfile from "../src/UserProfile";
 import Navbar from "../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
+import { IProfileData } from "../src/types";
+import { NextPage } from "next";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -19,18 +21,23 @@ const StyledContainer = styled.div<IStyledProps>`
     opensidebar === true ? "260px 8fr" : "1fr"};
 `;
 
-const Profile = (props) => {
+interface IProps {
+  profileData: IProfileData;
+}
+
+const Profile: NextPage<IProps> = ({ profileData }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
+
   return (
     <>
-      <Navbar props={props} toggleSidebar={toggleSidebar} />
+      <Navbar profileData={profileData} toggleSidebar={toggleSidebar} />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
-        <UserProfile props={props} />
+        <UserProfile profileData={profileData} />
 
         <Global
           styles={css`
@@ -57,7 +64,10 @@ const Profile = (props) => {
 
 Profile.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
-  console.log("store", store);
+
+  return {
+    profileData: store.profile,
+  };
 };
 
 export default withRedux(Profile);
