@@ -137,17 +137,15 @@ export interface IPlaylist {
 }
 
 export interface IProfileData {
-  body: {
-    country: string;
-    display_name: string;
-    email: string;
-    external_urls: { spotify: string };
-    followers: { href: null; total: number };
-    href: string;
-    id: string;
-    images: IImage[];
-    product: string;
-    type: string;
-    uri: string;
-  };
+  country: string;
+  display_name: string;
+  email: string;
+  external_urls: { spotify: string };
+  followers: { href: null; total: number };
+  href: string;
+  id: string;
+  images: IImage[];
+  product: string;
+  type: string;
+  uri: string;
 }

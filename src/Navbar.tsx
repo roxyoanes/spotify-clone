@@ -80,10 +80,10 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
               <button className="user" onClick={toggleMenuUser}>
                 <img
                   className="user-pic"
-                  src={profileData.body.images[0].url}
+                  src={profileData.images[0].url}
                   alt="profile-pic"
                 />
-                {profileData.body.display_name}
+                {profileData.display_name}
               </button>
             ) : null}
 

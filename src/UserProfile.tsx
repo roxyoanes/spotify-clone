@@ -17,14 +17,14 @@ const UserProfile: FC<IProps> = ({ profileData }) => {
           <div className="profile-card">
             <img
               className="profile-pic"
-              src={profileData.body.images[0].url}
+              src={profileData.images[0].url}
               alt="profile-pic"
             />
             <div className="text-card">
               <h5 className="title">PROFILE</h5>
-              <h1 className="name">{profileData.body.display_name}</h1>
+              <h1 className="name">{profileData.display_name}</h1>
               <h6 className="followers">
-                {profileData.body.followers.total} Followers
+                {profileData.followers.total} Followers
               </h6>
             </div>
           </div>
