@@ -4,8 +4,9 @@ import { Store } from "redux";
 import { Provider } from "react-redux";
 import App from "next/app";
 
-import { initializeStore, IState } from "./store";
-import { IActions } from "./types";
+import { IState } from "./reducers";
+import { initializeStore } from "./store";
+import { IActions } from "./actions";
 
 export interface IReduxStoreProps extends NextPageContext {
   reduxStore: Store<IState, IActions>;

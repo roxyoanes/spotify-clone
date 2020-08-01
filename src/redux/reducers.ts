@@ -1,17 +1,34 @@
-/* const initialState = {
-  reminders: [],
+import { IActions, ISpotifyTokens } from "./actions";
+import { IProfileData } from "../types";
+
+export interface IState {
+  spotify: ISpotifyTokens;
+  profile?: IProfileData;
+}
+
+export const initialState: IState = {
+  spotify: {
+    access_token: "",
+    refresh_token: "",
+  },
+  profile: undefined,
 };
-const todos = (state = initialState, action) => {
+
+const reducer = (state: IState = initialState, action: IActions): IState => {
   switch (action.type) {
-    case "ADD_TODO":
+    case "SET_TOKEN":
       return {
         ...state,
-        reminders: [...state.reminders, action.payload],
+        spotify: action.payload,
       };
-
+    case "SET_PROFILE":
+      return {
+        ...state,
+        profile: action.payload,
+      };
     default:
       return state;
   }
 };
 
-export default todos; */
+export default reducer;

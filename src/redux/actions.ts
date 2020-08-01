@@ -1,10 +1,30 @@
-/* import { useDispatch } from "react-redux";
+import { IProfileData } from "../types";
 
-const dispatch = useDispatch();
+export interface ISpotifyTokens {
+  access_token: string;
+  refresh_token: string;
+}
 
-export const addTodo = (text) => {
-  dispatch({
-    type: "ADD_TODO",
-    payload: text,
-  });
-}; */
+interface ISetTokenAction {
+  type: "SET_TOKEN";
+  payload: ISpotifyTokens;
+}
+
+export const setTokenAction = (data: ISpotifyTokens): ISetTokenAction => ({
+  type: "SET_TOKEN",
+  payload: data,
+});
+
+interface ISetProfileDataAction {
+  type: "SET_PROFILE";
+  payload: IProfileData;
+}
+
+export const setProfileDataAction = (
+  data: IProfileData
+): ISetProfileDataAction => ({
+  type: "SET_PROFILE",
+  payload: data,
+});
+
+export type IActions = ISetTokenAction | ISetProfileDataAction;
