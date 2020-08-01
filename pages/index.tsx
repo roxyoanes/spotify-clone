@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { NextPage } from "next";
@@ -10,6 +11,7 @@ import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
 import { IAlbum, IPlaylist, IProfileData } from "../src/types";
 import { useSelector } from "react-redux";
+import { setProfileDataAction } from "../src/redux/actions";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -32,12 +34,17 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
+  const dispatch = useDispatch();
   const [openSidebar, setOpenSidebar] = useState(false);
   const token = useSelector((state) => state.spotify.access_token);
 
   const toggleSidebar = () => {
     setOpenSidebar(!openSidebar);
   };
+
+  useEffect(() => {
+    dispatch(setProfileDataAction(profileData));
+  }, []);
 
   return (
     <>
@@ -76,7 +83,6 @@ interface IPlaylists {
 
 Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
-  console.log("store", store);
 
   if (store.spotify.access_token) {
     spotifyApi.setAccessToken(store.spotify.access_token);
@@ -132,7 +138,7 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
     return {
       newReleases,
       playlists,
-      profileData,
+      profileData: profileData.body,
     };
   }
 };

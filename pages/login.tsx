@@ -5,6 +5,7 @@ import Router from "next/router";
 
 import { authorizeURL } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
+import { setTokenAction } from "../src/redux/actions";
 
 interface IProps {
   tokenUrl: string;
@@ -23,16 +24,7 @@ const Login: NextPage<IProps> = ({ tokenUrl }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          dispatch({
-            type: "SET_TOKEN",
-            payload: data,
-          });
-        })
-        .then(() => {
-          dispatch({
-            type: "SET_PROFILE",
-            payload: "dd",
-          });
+          dispatch(setTokenAction(data));
         })
         .catch((error) => error);
     } else {
