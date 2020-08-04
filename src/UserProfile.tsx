@@ -24,7 +24,7 @@ const UserProfile: FC<IProps> = ({ profileData, userPlaylists }) => {
             <div className="text-card">
               <h5 className="title">PROFILE</h5>
               <h1 className="name">{profileData.display_name}</h1>
-              <h6 className="followers">
+              <h6 className="info-user">
                 {profileData.followers.total} Followers
               </h6>
             </div>

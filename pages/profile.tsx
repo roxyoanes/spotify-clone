@@ -6,7 +6,7 @@ import Sidebar from "../src/Sidebar";
 import UserProfile from "../src/UserProfile";
 import Navbar from "../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
-import { IProfileData } from "../src/types";
+import { IProfileData, IUserPlaylists } from "../src/types";
 import { NextPage } from "next";
 import { spotifyApi } from "../src/server/spotifyApi";
 
@@ -24,6 +24,7 @@ const StyledContainer = styled.div<IStyledProps>`
 
 interface IProps {
   profileData: IProfileData;
+  userPlaylists: IUserPlaylists;
 }
 
 const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
