@@ -30,6 +30,34 @@ const StyledUserProfile = styled.div`
     font-size: 14px;
     margin: 10px 0;
   }
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(5, 220px);
+    justify-content: center;
+    grid-gap: 30px;
+  }
+  .card {
+    background-color: #212121;
+    border-radius: 15px;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-title {
+    margin: 20px;
+    font-size: 20px;
+    color: white;
+  }
+  .card-img {
+    width: 160px;
+    height: 165px;
+  }
+  .playlist-name {
+    color: white;
+    font-size: 15px;
+    margin: 25px 0 14px;
+  }
 `;
 
 export default StyledUserProfile;
