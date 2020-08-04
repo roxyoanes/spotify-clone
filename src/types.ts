@@ -149,3 +149,64 @@ export interface IProfileData {
   type: string;
   uri: string;
 }
+
+export interface IUserPlaylists {
+  href: string;
+  items: [
+    {
+      collaborative: false;
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      images: IImage[];
+      name: string;
+      owner: {
+        external_urls: { spotify: string };
+        href: string;
+        id: string;
+        type: string;
+        uri: string;
+      };
+      public: true;
+      snapshot_id: string;
+      tracks: {
+        href: string;
+        total: 30;
+      };
+      type: string;
+      uri: string;
+    },
+    {
+      collaborative: false;
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      images: [];
+      name: string;
+      owner: {
+        external_urls: { spotify: string };
+        href: string;
+        id: string;
+        type: string;
+        uri: string;
+      };
+      public: true;
+      snapshot_id: string;
+      tracks: {
+        href: string;
+        total: number;
+      };
+      type: string;
+      uri: string;
+    }
+  ];
+  limit: number;
+  next: null;
+  offset: number;
+  previous: null;
+  total: number;
+}
