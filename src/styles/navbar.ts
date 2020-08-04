@@ -8,8 +8,8 @@ const StyledNavbar = styled.div`
     background-color: black;
     border-color: transparent;
     color: #fff;
-    border-radius: 10px;
-    padding: 8px 5px;
+    border-radius: 50px;
+    padding: 0 5px;
     font-weight: 600;
     margin: 0 5px;
   }
@@ -17,7 +17,6 @@ const StyledNavbar = styled.div`
     padding: 10px 0;
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
-    background-color: black;
   }
   .open-list,
   .user-menu-list {
