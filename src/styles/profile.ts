@@ -4,12 +4,11 @@ const StyledUserProfile = styled.div`
   background-color: #131413;
   color: white;
 
-  .container {
-    margin: 30px;
-  }
   .profile-card {
     display: flex;
     align-items: end;
+    background: linear-gradient(#212121, #131413);
+    padding: 80px 30px;
   }
   .profile-pic {
     border-radius: 50%;
@@ -19,22 +18,26 @@ const StyledUserProfile = styled.div`
     margin-left: 30px;
   }
   .title {
-    margin: 10px 0;
+    font-size: 24px;
+    margin: 20px 15px;
   }
   .name {
     font-size: 80px;
     margin: 0;
   }
-  .followers {
+  .info-user {
     color: #b3b3b3;
     font-size: 14px;
     margin: 10px 0;
+  }
+  .profile-playlists {
+    padding: 30px;
   }
   .cards-container {
     display: grid;
     grid-template-columns: repeat(5, 220px);
     justify-content: center;
-    grid-gap: 30px;
+    grid-gap: 20px;
   }
   .card {
     background-color: #212121;
