@@ -17,6 +17,17 @@ const StyledNavbar = styled.div`
     padding: 10px 0;
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
+    background-color: #131413;
+  }
+  .navbar-scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
   }
   .open-list,
   .user-menu-list {
