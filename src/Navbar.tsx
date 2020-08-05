@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import StyledNavbar from "./styles/navbar";
 import Router from "next/router";
 import { IProfileData } from "./types";
+import scrollHook from "./scrollHook";
 
 interface IProps {
   toggleSidebar: () => void;
@@ -15,8 +16,10 @@ interface IProps {
 const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const { scrolled } = scrollHook();
 
   const token = useSelector((state) => state.spotify.access_token);
+
   const toggleListOptions = () => {
     setOpenList(!openList);
   };
@@ -26,7 +29,7 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
 
   return (
     <StyledNavbar>
-      <div className="navbar-container">
+      <div className={scrolled ? "navbar-scrolled" : "navbar-container"}>
         <div>
           <button onClick={toggleSidebar}>Open</button>
         </div>

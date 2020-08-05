@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 
@@ -9,6 +8,7 @@ import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import { IProfileData, IUserPlaylists } from "../src/types";
 import { NextPage } from "next";
 import { spotifyApi } from "../src/server/spotifyApi";
+import toggleSidebarHook from "../src/toggleSidebarHook";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -28,11 +28,7 @@ interface IProps {
 }
 
 const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
-  const [openSidebar, setOpenSidebar] = useState(false);
-
-  const toggleSidebar = () => {
-    setOpenSidebar(!openSidebar);
-  };
+  const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
     <>

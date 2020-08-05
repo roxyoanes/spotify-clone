@@ -12,6 +12,7 @@ import Navbar from "../src/Navbar";
 import { IAlbum, IPlaylist, IProfileData } from "../src/types";
 import { useSelector } from "react-redux";
 import { setProfileDataAction } from "../src/redux/actions";
+import toggleSidebarHook from "../src/toggleSidebarHook";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -35,12 +36,10 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   const dispatch = useDispatch();
-  const [openSidebar, setOpenSidebar] = useState(false);
-  const token = useSelector((state) => state.spotify.access_token);
 
-  const toggleSidebar = () => {
-    setOpenSidebar(!openSidebar);
-  };
+  const { toggleSidebar, openSidebar } = toggleSidebarHook();
+
+  const token = useSelector((state) => state.spotify.access_token);
 
   useEffect(() => {
     dispatch(setProfileDataAction(profileData));
