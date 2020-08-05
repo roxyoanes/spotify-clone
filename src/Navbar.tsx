@@ -33,6 +33,7 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
         <div>
           <button onClick={toggleSidebar}>Open</button>
         </div>
+
         <div>
           {token ? (
             <button className="list" onClick={toggleListOptions}>
@@ -70,6 +71,10 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
               </Scrollspy>
             </nav>
           ) : null}
+        </div>
+        <div className="arrows-container">
+          <img className="arrow-btn" src="/angle-left-solid.svg" alt="arrow" />
+          <img className="arrow-btn" src="/angle-right-solid.svg" alt="arrow" />
         </div>
         <div className="user-menu">
           <div>

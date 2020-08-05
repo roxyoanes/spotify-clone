@@ -16,8 +16,16 @@ const StyledNavbar = styled.div`
   .navbar-container {
     padding: 10px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
     background-color: #131413;
+  }
+  .arrow-btn {
+    width: 5%;
+    margin: 0 10px;
+    border-color: black;
+    background-color: black;
+    padding: 3px 10px;
+    border-radius: 50%;
   }
   .navbar-scrolled {
     position: fixed;
