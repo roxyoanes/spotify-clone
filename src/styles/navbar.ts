@@ -16,16 +16,15 @@ const StyledNavbar = styled.div`
   .navbar-container {
     padding: 10px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-columns: repeat(3, 1fr) 2fr;
     background-color: #131413;
+    align-items: center;
   }
   .arrow-btn {
-    width: 5%;
-    margin: 0 10px;
-    border-color: black;
-    background-color: black;
-    padding: 3px 10px;
-    border-radius: 50%;
+    padding: 0 10px;
+  }
+  .arrow-img {
+    width: 10px;
   }
   .navbar-scrolled {
     position: fixed;
@@ -35,17 +34,27 @@ const StyledNavbar = styled.div`
     width: 100%;
     padding: 10px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: repeat(3, 1fr) 2fr;
+    align-items: center;
   }
   .open-list,
   .user-menu-list {
     margin-top: 10px;
     transition: height 0.3s;
     position: absolute;
+    background-color: #131413;
+    padding: 5px 60px 12px 5px;
+    border-radius: 12px;
   }
   .user-menu {
     display: flex;
     justify-content: flex-end;
+  }
+  .user-menu-btn {
+    background-color: transparent;
+    color: #b3b3b3;
+    padding: 5px 0;
+    font-weight: 300;
   }
   .user {
     display: flex;

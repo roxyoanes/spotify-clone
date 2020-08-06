@@ -72,10 +72,25 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
             </nav>
           ) : null}
         </div>
-        <div className="arrows-container">
-          <img className="arrow-btn" src="/angle-left-solid.svg" alt="arrow" />
-          <img className="arrow-btn" src="/angle-right-solid.svg" alt="arrow" />
-        </div>
+        {token ? (
+          <div className="arrows-container">
+            <button className="arrow-btn" onClick={() => Router.push("/index")}>
+              <img
+                src="/angle-left-solid.svg"
+                className="arrow-img"
+                alt="arrow"
+              />
+            </button>
+            <button className="arrow-btn">
+              <img
+                className="arrow-img"
+                src="/angle-right-solid.svg"
+                alt="arrow"
+              />
+            </button>
+          </div>
+        ) : null}
+
         <div className="user-menu">
           <div>
             {!token ? (
@@ -102,13 +117,17 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
                     display: "flex",
                     flexDirection: "column",
                     padding: "0",
-                    alignItems: "center",
                     margin: "0",
                   }}
                 >
-                  <button onClick={() => Router.push("/profile")}>
+                  <button
+                    className="user-menu-btn"
+                    onClick={() => Router.push("/profile")}
+                  >
                     Profile
                   </button>
+                  <button className="user-menu-btn">Account</button>
+                  <button className="user-menu-btn">Log out</button>
                 </div>
               </nav>
             ) : null}
