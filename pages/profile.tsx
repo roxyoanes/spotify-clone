@@ -22,6 +22,11 @@ const StyledContainer = styled.div<IStyledProps>`
     opensidebar === true ? "260px 8fr" : "1fr"};
 `;
 
+const StyledRightSideContainer = styled.div<IStyledProps>`
+  display: grid;
+  background-color: linear-gradient(#212121, #131413);
+`;
+
 interface IProps {
   profileData: IProfileData;
   userPlaylists: IUserPlaylists;
@@ -31,36 +36,42 @@ const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <>
-      <Navbar
-        openSidebar={openSidebar}
-        profileData={profileData}
-        toggleSidebar={toggleSidebar}
-      />
-      <StyledContainer opensidebar={openSidebar}>
-        <Sidebar openSidebar={openSidebar} />
-        <UserProfile profileData={profileData} userPlaylists={userPlaylists} />
+    <StyledContainer opensidebar={openSidebar}>
+      <Sidebar openSidebar={openSidebar} />
+      <>
+        <StyledRightSideContainer opensidebar={openSidebar}>
+          <Navbar
+            openSidebar={openSidebar}
+            profileData={profileData}
+            toggleSidebar={toggleSidebar}
+          />
 
-        <Global
-          styles={css`
-            html,
-            body {
-              padding: 0;
-              margin: 0 !important;
-              font-family: "arial", sans-serif;
-            }
-            a {
-              text-decoration: none;
-              cursor: pointer;
-              color: #b3b3b3;
-              &:hover {
-                color: #fff;
+          <UserProfile
+            profileData={profileData}
+            userPlaylists={userPlaylists}
+          />
+
+          <Global
+            styles={css`
+              html,
+              body {
+                padding: 0;
+                margin: 0 !important;
+                font-family: "arial", sans-serif;
               }
-            }
-          `}
-        />
-      </StyledContainer>
-    </>
+              a {
+                text-decoration: none;
+                cursor: pointer;
+                color: #b3b3b3;
+                &:hover {
+                  color: #fff;
+                }
+              }
+            `}
+          />
+        </StyledRightSideContainer>
+      </>
+    </StyledContainer>
   );
 };
 

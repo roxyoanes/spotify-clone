@@ -40,7 +40,7 @@ const StyledSidebar = styled.div<IProps>`
   }
 
   .footer {
-    position: fixed;
+    position: sticky;
     text-align: center;
     padding: 12px 0;
   }

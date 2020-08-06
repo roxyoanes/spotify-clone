@@ -7,7 +7,6 @@ const StyledUserProfile = styled.div`
   .profile-card {
     display: flex;
     align-items: end;
-    background: linear-gradient(#212121, #131413);
     padding: 80px 30px;
   }
   .profile-pic {

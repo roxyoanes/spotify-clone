@@ -24,8 +24,11 @@ const StyledContainer = styled.div<IStyledProps>`
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "260px 1fr" : "1fr"};
-  overflow-y: hidden;
   background-color: #131413;
+`;
+
+const StyledRightSideContainer = styled.div<IStyledProps>`
+  display: grid;
 `;
 
 interface IProps {
@@ -46,33 +49,41 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   }, []);
 
   return (
-    <>
-      <Navbar toggleSidebar={toggleSidebar} profileData={profileData} />
-      <StyledContainer opensidebar={openSidebar}>
-        <Sidebar openSidebar={openSidebar} />
-        {token ? (
-          <Playlists newReleases={newReleases} playlists={playlists} />
-        ) : null}
-        <Global
-          styles={css`
-            html,
-            body {
-              padding: 0;
-              margin: 0 !important;
-              font-family: "arial", sans-serif;
-            }
-            a {
-              text-decoration: none;
-              cursor: pointer;
-              color: #b3b3b3;
-              &:hover {
-                color: #fff;
+    <StyledContainer opensidebar={openSidebar}>
+      <Sidebar openSidebar={openSidebar} />
+      <>
+        <StyledRightSideContainer opensidebar={openSidebar}>
+          <Navbar
+            openSidebar={openSidebar}
+            toggleSidebar={toggleSidebar}
+            profileData={profileData}
+          />
+
+          {token ? (
+            <Playlists newReleases={newReleases} playlists={playlists} />
+          ) : null}
+
+          <Global
+            styles={css`
+              html,
+              body {
+                padding: 0;
+                margin: 0 !important;
+                font-family: "arial", sans-serif;
               }
-            }
-          `}
-        />
-      </StyledContainer>
-    </>
+              a {
+                text-decoration: none;
+                cursor: pointer;
+                color: #b3b3b3;
+                &:hover {
+                  color: #fff;
+                }
+              }
+            `}
+          />
+        </StyledRightSideContainer>
+      </>
+    </StyledContainer>
   );
 };
 
