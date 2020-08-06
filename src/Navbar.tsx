@@ -11,9 +11,10 @@ import scrollHook from "./scrollHook";
 interface IProps {
   toggleSidebar: () => void;
   profileData: IProfileData;
+  openSidebar: boolean;
 }
 
-const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
+const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
   const [openList, setOpenList] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { scrolled } = scrollHook();
@@ -31,9 +32,16 @@ const Navbar: FC<IProps> = ({ toggleSidebar, profileData }) => {
     <StyledNavbar>
       <div className={scrolled ? "navbar-scrolled" : "navbar-container"}>
         <div>
-          <button onClick={toggleSidebar}>Open</button>
+          {openSidebar ? (
+            <button className="sidebar-btn" onClick={toggleSidebar}>
+              Open
+            </button>
+          ) : (
+            <button className="sidebar-btn" onClick={toggleSidebar}>
+              Close
+            </button>
+          )}
         </div>
-
         <div>
           {token ? (
             <button className="list" onClick={toggleListOptions}>
