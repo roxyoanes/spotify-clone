@@ -32,7 +32,11 @@ const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
 
   return (
     <>
-      <Navbar profileData={profileData} toggleSidebar={toggleSidebar} />
+      <Navbar
+        openSidebar={openSidebar}
+        profileData={profileData}
+        toggleSidebar={toggleSidebar}
+      />
       <StyledContainer opensidebar={openSidebar}>
         <Sidebar openSidebar={openSidebar} />
         <UserProfile profileData={profileData} userPlaylists={userPlaylists} />
