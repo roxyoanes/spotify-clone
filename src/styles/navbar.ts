@@ -37,6 +37,9 @@ const StyledNavbar = styled.div`
     grid-template-columns: repeat(3, 1fr) 2fr;
     align-items: center;
   }
+  .sidebar-btn {
+    padding: 5px 10px;
+  }
   .open-list,
   .user-menu-list {
     margin-top: 10px;
