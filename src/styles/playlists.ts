@@ -17,7 +17,7 @@ const StyledPlaylists = styled.div`
   }
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(5, 220px);
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     grid-gap: 30px;
     margin: 0 20px;
@@ -31,8 +31,7 @@ const StyledPlaylists = styled.div`
     align-items: center;
   }
   .card-img {
-    width: 160px;
-    height: 165px;
+    height: 35vh;
   }
   .text-wrapper {
     color: #b3b3b3;

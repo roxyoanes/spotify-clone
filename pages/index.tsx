@@ -30,7 +30,6 @@ const StyledContainer = styled.div<IStyledProps>`
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
-  overflow-y: auto;
 `;
 
 interface IProps {
