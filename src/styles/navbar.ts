@@ -23,8 +23,12 @@ const StyledNavbar = styled.div`
   .arrow-btn {
     padding: 0 10px;
   }
-  .arrow-img {
+  .arrow-img,
+  .user-menu-arrow {
     width: 10px;
+  }
+  .user-menu-arrow {
+    padding: 0 6px;
   }
   .navbar-scrolled {
     position: fixed;
@@ -59,8 +63,6 @@ const StyledNavbar = styled.div`
     font-weight: 300;
   }
   .user {
-    display: flex;
-    align-items: center;
     margin-right: 30px;
   }
   .user-pic {

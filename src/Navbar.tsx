@@ -115,6 +115,19 @@ const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
                   alt="profile-pic"
                 />
                 {profileData.display_name}
+                {openUserMenu ? (
+                  <img
+                    className="user-menu-arrow"
+                    src="/sort-up-solid.svg"
+                    alt="arrow-up"
+                  ></img>
+                ) : (
+                  <img
+                    className="user-menu-arrow"
+                    src="/sort-down-solid.svg"
+                    alt="arrow-up"
+                  ></img>
+                )}
               </button>
             ) : null}
 
