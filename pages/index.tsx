@@ -25,10 +25,12 @@ const StyledContainer = styled.div<IStyledProps>`
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "260px 1fr" : "1fr"};
   background-color: #131413;
+  overflow-y: hidden;
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
+  overflow-y: auto;
 `;
 
 interface IProps {
@@ -51,38 +53,36 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   return (
     <StyledContainer opensidebar={openSidebar}>
       <Sidebar openSidebar={openSidebar} />
-      <>
-        <StyledRightSideContainer opensidebar={openSidebar}>
-          <Navbar
-            openSidebar={openSidebar}
-            toggleSidebar={toggleSidebar}
-            profileData={profileData}
-          />
+      <StyledRightSideContainer opensidebar={openSidebar}>
+        <Navbar
+          openSidebar={openSidebar}
+          toggleSidebar={toggleSidebar}
+          profileData={profileData}
+        />
 
-          {token ? (
-            <Playlists newReleases={newReleases} playlists={playlists} />
-          ) : null}
+        {token ? (
+          <Playlists newReleases={newReleases} playlists={playlists} />
+        ) : null}
 
-          <Global
-            styles={css`
-              html,
-              body {
-                padding: 0;
-                margin: 0 !important;
-                font-family: "arial", sans-serif;
+        <Global
+          styles={css`
+            html,
+            body {
+              padding: 0;
+              margin: 0 !important;
+              font-family: "arial", sans-serif;
+            }
+            a {
+              text-decoration: none;
+              cursor: pointer;
+              color: #b3b3b3;
+              &:hover {
+                color: #fff;
               }
-              a {
-                text-decoration: none;
-                cursor: pointer;
-                color: #b3b3b3;
-                &:hover {
-                  color: #fff;
-                }
-              }
-            `}
-          />
-        </StyledRightSideContainer>
-      </>
+            }
+          `}
+        />
+      </StyledRightSideContainer>
     </StyledContainer>
   );
 };
