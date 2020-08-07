@@ -32,7 +32,7 @@ const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
     <StyledNavbar>
       <div className={scrolled ? "navbar-scrolled" : "navbar-container"}>
         <div>
-          {openSidebar ? (
+          {!openSidebar ? (
             <button className="sidebar-btn" onClick={toggleSidebar}>
               Open
             </button>

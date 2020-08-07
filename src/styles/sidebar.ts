@@ -9,10 +9,10 @@ const StyledSidebar = styled.div<IProps>`
   color: #b3b3b3;
   display: ${({ opensidebar }) => (opensidebar === true ? "block" : "none")};
 
+  .sidebar-wrapper {
+    position: fixed;
+  }
   .logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 20px 0;
   }
 

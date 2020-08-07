@@ -29,7 +29,6 @@ const StyledNavbar = styled.div`
   .navbar-scrolled {
     position: fixed;
     top: 0;
-    left: 0;
     background-color: black;
     width: 100%;
     padding: 10px 0;
