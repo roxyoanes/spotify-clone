@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 const StyledPlaylist = styled.div`
   color: white;
   padding: 20px 30px;
+  margin: 0 40px;
 
   .playlist-main {
     display: flex;
@@ -26,11 +27,35 @@ const StyledPlaylist = styled.div`
     color: #b3b3b3;
     font-weight: 200;
   }
+  .buttons-container {
+    display: flex;
+  }
+  .play-btn {
+    padding: 15px 20px;
+    background-color: #1db954;
+    border: none;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+  .play-img {
+    width: 20px;
+  }
   .playlist-container {
     margin: 40px 0;
   }
+  .playlist-menu-btn {
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+  }
+  .playlist-menu-img {
+    width: 25px;
+  }
   .song-container {
     padding: 15px 0;
+  }
+  .music-icon {
+    width: 15px;
   }
   .song-title {
     font-size: 16px;
