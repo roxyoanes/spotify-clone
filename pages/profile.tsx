@@ -80,7 +80,6 @@ Profile.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const name = store.profile.display_name;
 
   const userPlaylists = await spotifyApi.getUserPlaylists({ name });
-  console.log("rrr", userPlaylists.body);
   return {
     profileData: store.profile,
     userPlaylists: userPlaylists.body,

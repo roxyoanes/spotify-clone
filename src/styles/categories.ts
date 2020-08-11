@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const StyledPlaylists = styled.div`
+const StyledCategories = styled.div`
   background-color: #131413;
   color: #b3b3b3;
 
@@ -29,9 +29,10 @@ const StyledPlaylists = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
   }
   .card-img {
-    height: 35vh;
+    height: 125px;
   }
   .text-wrapper {
     color: #b3b3b3;
@@ -49,4 +50,4 @@ const StyledPlaylists = styled.div`
   }
 `;
 
-export default StyledPlaylists;
+export default StyledCategories;
