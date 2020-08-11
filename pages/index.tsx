@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { NextPage } from "next";
 
 import Sidebar from "../src/Sidebar";
-import Playlists from "../src/Playlists";
+import Categories from "../src/Categories";
 import { spotifyApi } from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
@@ -60,7 +60,7 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
         />
 
         {token ? (
-          <Playlists newReleases={newReleases} playlists={playlists} />
+          <Categories newReleases={newReleases} playlists={playlists} />
         ) : null}
 
         <Global
