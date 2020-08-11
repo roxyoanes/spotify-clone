@@ -27,9 +27,29 @@ const Playlist: NextPage<IProps> = ({ playlist }) => {
           </div>
         </div>
         <div className="playlist-container">
+          <div className="buttons-container">
+            <button className="play-btn">
+              <img
+                className="play-img"
+                src="/play-solid.svg"
+                alt="play-icon"
+              ></img>
+            </button>
+            <button className="playlist-menu-btn">
+              <img
+                className="playlist-menu-img"
+                src="/ellipsis-h-solid.svg"
+                alt="play-icon"
+              ></img>
+            </button>
+          </div>
           {playlist.tracks.items.map((item) => (
             <div className="song-container" key={item.id}>
-              {console.log("cd", item)}
+              <img
+                className="music-icon"
+                src="/music-solid.svg"
+                alt="music-icon"
+              ></img>
               <p className="song-title">{item.track.name}</p>
               <div className="artists-container">
                 {item.track.artists.map((artist) => (
