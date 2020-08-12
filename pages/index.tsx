@@ -26,6 +26,7 @@ const StyledContainer = styled.div<IStyledProps>`
     opensidebar === true ? "260px 1fr" : "1fr"};
   background-color: #131413;
   overflow-y: hidden;
+  padding-bottom: 40px;
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
