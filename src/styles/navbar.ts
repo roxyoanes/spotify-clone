@@ -64,6 +64,8 @@ const StyledNavbar = styled.div`
   }
   .user {
     margin-right: 30px;
+    display: flex;
+    align-items: center;
   }
   .user-pic {
     height: 35px;
