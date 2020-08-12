@@ -34,7 +34,7 @@ const StyledUserProfile = styled.div`
   }
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(5, 220px);
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
     grid-gap: 20px;
   }

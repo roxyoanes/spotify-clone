@@ -34,7 +34,7 @@ const StyledNavbar = styled.div`
     position: fixed;
     top: 0;
     background-color: black;
-    width: 100%;
+    width: -moz-available;
     padding: 10px 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr) 2fr;
