@@ -11,37 +11,48 @@ const StyledSidebar = styled.div<IProps>`
 
   .sidebar-wrapper {
     position: fixed;
+    width: 20%;
   }
-  .logo-container {
-    padding: 20px 0;
+  .main-container {
+    padding: 20px;
   }
 
   .logo {
     width: 60%;
   }
 
-  .links-container,
-  .playlist-container {
+  .icon {
+    width: 10%;
+    margin-right: 15px;
+  }
+
+  .icon-plus {
+    background-color: #b3b3b3;
+    width: 8%;
+    margin-right: 15px;
+    padding: 5px;
+  }
+
+  .links-container {
     display: flex;
     flex-direction: column;
-    padding: 0 0 0 20px;
     margin: 20px 0;
   }
 
   .link {
     font-size: 15px;
-    padding: 4px 0;
+    padding: 10px 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
   }
 
   .title {
-    text-align: left;
     font-size: 14px;
-    margin: 15px 5px 20px 15px;
+    margin: 20px 0;
   }
 
   .footer {
-    position: sticky;
-    text-align: center;
     padding: 12px 0;
   }
 `;
