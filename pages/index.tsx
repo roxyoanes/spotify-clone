@@ -23,7 +23,7 @@ const StyledContainer = styled.div<IStyledProps>`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
-    opensidebar === true ? "260px 1fr" : "1fr"};
+    opensidebar === true ? "1fr 4fr" : "1fr"};
   background-color: #131413;
   overflow-y: hidden;
   padding-bottom: 40px;

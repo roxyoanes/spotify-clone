@@ -19,7 +19,7 @@ const StyledContainer = styled.div<IStyledProps>`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
-    opensidebar === true ? "260px 8fr" : "1fr"};
+    opensidebar === true ? "1fr 4fr" : "1fr"};
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
