@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import Router from "next/router";
 
 import { NextPage } from "next";
-import { IPlaylist } from "./types";
+import { IGetPlaylist } from "./types";
 
 import StyledPlaylist from "./styles/playlist";
 import { useState } from "react";
 
 interface IProps {
-  playlist: IPlaylist;
+  playlist: IGetPlaylist;
 }
 
 const Playlist: NextPage<IProps> = ({ playlist }) => {
@@ -78,8 +78,7 @@ const Playlist: NextPage<IProps> = ({ playlist }) => {
             </div>
           </div>
           {playlist.tracks.items.map((item) => (
-            <div className="song-container" key={item.id}>
-              {console.log("cc", item)}
+            <div className="song-container" key={item.track.id}>
               <img
                 className="music-icon"
                 src="/music-solid.svg"
@@ -89,7 +88,7 @@ const Playlist: NextPage<IProps> = ({ playlist }) => {
                 <p className="song-title">{item.track.name}</p>
                 <div className="artists-container">
                   {item.track.artists.map((artist) => (
-                    <p className="artist" key={item.id}>
+                    <p className="artist" key={artist.id}>
                       {artist.name}
                     </p>
                   ))}

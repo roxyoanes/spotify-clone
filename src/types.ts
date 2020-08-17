@@ -210,3 +210,108 @@ export interface IUserPlaylists {
   previous: null;
   total: number;
 }
+
+export interface IGetPlaylist {
+  collaborative: false;
+  description: string;
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: null;
+    total: number;
+  };
+  href: string;
+  id: string;
+  images: [
+    {
+      url: string;
+    }
+  ];
+  name: string;
+  owner: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  public: null;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    items: [
+      {
+        added_at: string;
+        added_by: {
+          external_urls: {
+            spotify: string;
+          };
+          href: string;
+          id: string;
+          type: string;
+          uri: string;
+        };
+        is_local: false;
+        track: {
+          album: {
+            album_type: string;
+            available_markets: string[];
+            external_urls: {
+              spotify: string;
+            };
+            href: string;
+            id: string;
+            images: {
+              height: number;
+              url: string;
+              width: number;
+            }[];
+            name: string;
+            type: string;
+            uri: string;
+          };
+          artists: [
+            {
+              external_urls: {
+                spotify: string;
+              };
+              href: string;
+              id: string;
+              name: string;
+              type: string;
+              uri: string;
+            }
+          ];
+          available_markets: string[];
+          disc_number: number;
+          duration_ms: number;
+          explicit: false;
+          external_ids: {
+            isrc: string;
+          };
+          external_urls: {
+            spotify: string;
+          };
+          href: string;
+          id: string;
+          name: string;
+          popularity: number;
+          preview_url: string;
+          track_number: number;
+          type: string;
+          uri: string;
+        };
+      }
+    ];
+    limit: number;
+    next: string;
+    offset: number;
+    previous: null;
+    total: number;
+  };
+  type: string;
+  uri: string;
+}

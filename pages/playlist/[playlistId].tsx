@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 
 import { spotifyApi } from "../../src/server/spotifyApi";
-import { IPlaylist, IProfileData } from "../../src/types";
+import { IPlaylist, IProfileData, IGetPlaylist } from "../../src/types";
 import { NextPage, NextPageContext } from "next";
 import Playlist from "../../src/Playlist";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
