@@ -1,6 +1,3 @@
-import { useRouter } from "next/router";
-import Router from "next/router";
-
 import { NextPage } from "next";
 import { IGetPlaylist } from "./types";
 
@@ -12,9 +9,6 @@ interface IProps {
 }
 
 const Playlist: NextPage<IProps> = ({ playlist }) => {
-  const router = useRouter();
-  const { playlistId } = router.query;
-
   const [openPlaylistMenu, setOpenPlaylistMenu] = useState(false);
 
   const togglePlaylistMenu = () => {
