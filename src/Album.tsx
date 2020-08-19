@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import { IGetAlbum } from "./types";
 
-import { useState } from "react";
 import StyledAlbum from "./styles/album";
 
 interface IProps {
@@ -9,12 +8,7 @@ interface IProps {
 }
 
 const Album: NextPage<IProps> = ({ albumData }) => {
-  const [openPlaylistMenu, setOpenPlaylistMenu] = useState(false);
   console.log("album", albumData);
-
-  const togglePlaylistMenu = () => {
-    setOpenPlaylistMenu(!openPlaylistMenu);
-  };
 
   return (
     <StyledAlbum>
