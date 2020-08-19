@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 import { spotifyApi } from "../../src/server/spotifyApi";
-import { IPlaylist, IProfileData } from "../../src/types";
+import { IProfileData, IGetPlaylist } from "../../src/types";
 import { NextPage } from "next";
 import Playlist from "../../src/Playlist";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
@@ -14,7 +14,7 @@ interface IStyledProps {
   opensidebar: boolean;
 }
 interface IProps {
-  playlist: IPlaylist;
+  playlist: IGetPlaylist;
   profileData: IProfileData;
 }
 
@@ -75,7 +75,6 @@ interface IServerProps extends IReduxStoreProps {
 
 PlaylistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const store = reduxStore.getState();
-  const token = useSelector((state) => state.spotify.access_token);
 
   const { playlistId } = query;
   const playlist = await spotifyApi.getPlaylist(playlistId);
