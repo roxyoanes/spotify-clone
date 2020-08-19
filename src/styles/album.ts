@@ -17,8 +17,9 @@ const StyledAlbum = styled.div`
     margin-left: 30px;
   }
   .album-type {
-    font-size: 24px;
+    font-size: 14px;
     margin: 20px 15px;
+    text-transform: uppercase;
   }
   .name {
     font-size: 80px;
