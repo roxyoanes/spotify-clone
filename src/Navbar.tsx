@@ -82,14 +82,14 @@ const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
         </div>
         {token ? (
           <div className="arrows-container">
-            <button className="arrow-btn" onClick={() => Router.push("/index")}>
+            <button className="arrow-btn" onClick={() => Router.back()}>
               <img
                 src="/angle-left-solid.svg"
                 className="arrow-img"
                 alt="arrow"
               />
             </button>
-            <button className="arrow-btn">
+            <button onClick={() => window.history.go(1)} className="arrow-btn">
               <img
                 className="arrow-img"
                 src="/angle-right-solid.svg"
