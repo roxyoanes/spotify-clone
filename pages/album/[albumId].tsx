@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import { IProfileData, IGetAlbum } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -15,6 +15,7 @@ interface IStyledProps {
 }
 interface IProps {
   profileData: IProfileData;
+  albumData: IGetAlbum;
 }
 
 const StyledContainer = styled.div<IStyledProps>`

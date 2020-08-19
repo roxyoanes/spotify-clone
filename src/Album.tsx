@@ -1,11 +1,11 @@
 import { NextPage } from "next";
-import { IAlbum } from "./types";
+import { IGetAlbum } from "./types";
 
 import { useState } from "react";
 import StyledAlbum from "./styles/album";
 
 interface IProps {
-  newReleases: IAlbum[];
+  albumData: IGetAlbum;
 }
 
 const Album: NextPage<IProps> = ({ albumData }) => {
