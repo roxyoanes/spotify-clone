@@ -26,6 +26,7 @@ const reducer = (state: IState = initialState, action: IActions): IState => {
         ...state,
         profile: action.payload,
       };
+
     default:
       return state;
   }

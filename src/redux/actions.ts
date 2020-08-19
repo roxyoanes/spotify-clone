@@ -1,4 +1,4 @@
-import { IProfileData } from "../types";
+import { IProfileData, IAlbum } from "../types";
 
 export interface ISpotifyTokens {
   access_token: string;

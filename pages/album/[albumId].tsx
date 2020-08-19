@@ -1,19 +1,19 @@
 import styled from "@emotion/styled";
 
-import { IPlaylist, IProfileData, IAlbum } from "../../src/types";
+import { IProfileData } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
-import Album from "../../src/AlbumCard";
+import Album from "../../src/Album";
+import { spotifyApi } from "../../src/server/spotifyApi";
 
 interface IStyledProps {
   opensidebar: boolean;
 }
 interface IProps {
-  newReleases: IAlbum[];
   profileData: IProfileData;
 }
 
@@ -30,7 +30,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const AlbumId: NextPage<IProps> = ({ profileData, newReleases }) => {
+const AlbumId: NextPage<IProps> = ({ profileData, albumData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -42,7 +42,7 @@ const AlbumId: NextPage<IProps> = ({ profileData, newReleases }) => {
           toggleSidebar={toggleSidebar}
           profileData={profileData}
         />
-        <Album newReleases={newReleases} />
+        <Album albumData={albumData} />
         <Global
           styles={css`
             html,
@@ -66,12 +66,15 @@ const AlbumId: NextPage<IProps> = ({ profileData, newReleases }) => {
   );
 };
 
-AlbumId.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
-  /*  const store = reduxStore.getState();
-  console.log("st", store); */
-  /* 
+AlbumId.getInitialProps = async ({ query, reduxStore }: IReduxStoreProps) => {
+  const store = reduxStore.getState();
+
+  const { albumId } = query;
+  const albumData = await spotifyApi.getAlbum(albumId);
+
   return {
-    newReleases: store.newreleases,
-  }; */
+    profileData: store.profile,
+    albumData: albumData.body,
+  };
 };
 export default withRedux(AlbumId);
