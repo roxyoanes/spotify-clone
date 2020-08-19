@@ -1,26 +1,44 @@
-import { FC } from "react";
-
+import { NextPage } from "next";
 import { IAlbum } from "./types";
 
+import { useState } from "react";
+import StyledAlbum from "./styles/album";
+
 interface IProps {
-  category: IAlbum[];
+  newReleases: IAlbum[];
 }
-const Album: FC<IProps> = ({ category }) => {
+
+const Album: NextPage<IProps> = ({ albumData }) => {
+  const [openPlaylistMenu, setOpenPlaylistMenu] = useState(false);
+  console.log("album", albumData);
+
+  const togglePlaylistMenu = () => {
+    setOpenPlaylistMenu(!openPlaylistMenu);
+  };
+
   return (
-    <>
-      {category.map((obj) => (
-        <div className="card" key="obj.name">
+    <StyledAlbum>
+      <div className="container">
+        <div className="album-main">
           <img
-            className="card-img"
-            src={obj.images[0].url}
-            alt="category-img"
+            className="album-pic"
+            src={albumData.images[0].url}
+            alt="album-pic"
           />
-          <div className="text-wrapper">
-            <h5 className="playlist-name">{obj.name}</h5>
+          <div className="text-card">
+            <h5 className="album-type">{albumData.album_type}</h5>
+            <h1 className="name">{albumData.name}</h1>
+
+            {albumData.artists.map((artist) => (
+              <p className="info-artist" key={artist.id}>
+                {artist.name}
+              </p>
+            ))}
+            <p>{albumData.release_date}</p>
           </div>
         </div>
-      ))}
-    </>
+      </div>
+    </StyledAlbum>
   );
 };
 
