@@ -3,7 +3,7 @@ import { FC } from "react";
 import PlaylistCard from "./PlaylistCard";
 import StyledCategories from "./styles/categories";
 import { IAlbum, IPlaylist } from "./types";
-import Album from "./Album";
+import AlbumCard from "./AlbumCard";
 
 interface IProps {
   newReleases: IAlbum[];
@@ -19,7 +19,7 @@ const Categories: FC<IProps> = ({ newReleases, playlists }) => {
         <div>
           <h4 className="card-title">New Releases</h4>
           <div className="cards-container">
-            <Album category={newReleases} />
+            <AlbumCard newReleases={newReleases} />
           </div>
         </div>
 
