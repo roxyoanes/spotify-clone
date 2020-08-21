@@ -16,7 +16,7 @@ const StyledNavbar = styled.div`
   .navbar-container {
     padding: 10px 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr) 2fr;
+    grid-template-columns: repeat(3, 0.5fr) 2fr;
     background-color: #131413;
     align-items: center;
   }
@@ -43,7 +43,6 @@ const StyledNavbar = styled.div`
   .sidebar-btn {
     padding: 5px 10px;
   }
-  .open-list,
   .user-menu-list {
     margin-top: 10px;
     transition: height 0.3s;
@@ -72,13 +71,12 @@ const StyledNavbar = styled.div`
     border-radius: 50%;
     margin-right: 10px;
   }
-  .list {
-    display: none;
-  }
-  .list-item {
+
+  .library-item {
     font-size: 14px;
     font-weight: 700;
-    padding: 5px 0;
+    padding: 5px;
+    color: white;
   }
 `;
 
