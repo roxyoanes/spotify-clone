@@ -21,13 +21,13 @@ interface IProps {
 const StyledContainer = styled.div<IStyledProps>`
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "1fr 4fr" : "1fr"};
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
-  display: grid;
+  /*   display: grid;
+ */
   background: linear-gradient(#212121, #131413);
 `;
 
