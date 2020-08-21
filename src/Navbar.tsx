@@ -12,18 +12,20 @@ interface IProps {
   toggleSidebar: () => void;
   profileData: IProfileData;
   openSidebar: boolean;
+  libraryMenu?: boolean;
 }
 
-const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
-  const [openList, setOpenList] = useState(false);
+const Navbar: FC<IProps> = ({
+  toggleSidebar,
+  openSidebar,
+  profileData,
+  libraryMenu,
+}) => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { scrolled } = scrollHook();
 
   const token = useSelector((state) => state.spotify.access_token);
 
-  const toggleListOptions = () => {
-    setOpenList(!openList);
-  };
   const toggleMenuUser = () => {
     setOpenUserMenu(!openUserMenu);
   };
@@ -42,44 +44,7 @@ const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
             </button>
           )}
         </div>
-        <div>
-          {token ? (
-            <button className="list" onClick={toggleListOptions}>
-              List
-            </button>
-          ) : null}
 
-          {openList ? (
-            <nav className="open-list">
-              <Scrollspy
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "0",
-                  alignItems: "flex-start",
-                  margin: "0",
-                }}
-                items={["Playlists", "Podcasts", "Artists", "Albums"]}
-                currentClassName="navbar-is-current"
-              >
-                {[
-                  { value: "Playlists", href: "#playlists" },
-                  { value: "Podcasts", href: "#podcasts" },
-                  { value: "Artists", href: "#artists" },
-                  { value: "Albums", href: "#albums" },
-                ].map((navElement) => (
-                  <a
-                    href={navElement.href}
-                    key={navElement.value}
-                    className="list-item"
-                  >
-                    {navElement.value}
-                  </a>
-                ))}
-              </Scrollspy>
-            </nav>
-          ) : null}
-        </div>
         {token ? (
           <div className="arrows-container">
             <button className="arrow-btn" onClick={() => Router.back()}>
@@ -98,6 +63,37 @@ const Navbar: FC<IProps> = ({ toggleSidebar, openSidebar, profileData }) => {
             </button>
           </div>
         ) : null}
+
+        {libraryMenu && (
+          <div>
+            <nav className="library-list">
+              <Scrollspy
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  margin: "0",
+                }}
+                items={["Playlists", "Podcasts", "Artists", "Albums"]}
+                currentClassName="navbar-is-current"
+              >
+                {[
+                  { value: "Playlists", href: "#playlists" },
+                  { value: "Podcasts", href: "#podcasts" },
+                  { value: "Artists", href: "#artists" },
+                  { value: "Albums", href: "#albums" },
+                ].map((navElement) => (
+                  <a
+                    href={navElement.href}
+                    key={navElement.value}
+                    className="library-item"
+                  >
+                    {navElement.value}
+                  </a>
+                ))}
+              </Scrollspy>
+            </nav>
+          </div>
+        )}
 
         <div className="user-menu">
           <div>
