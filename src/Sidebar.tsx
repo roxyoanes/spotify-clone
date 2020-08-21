@@ -1,5 +1,6 @@
 import { FC } from "react";
 import StyledSidebar from "./styles/sidebar";
+import Link from "next/link";
 
 interface IProps {
   openSidebar: boolean;
@@ -13,18 +14,20 @@ const Sidebar: FC<IProps> = ({ openSidebar }) => {
           <img className="logo" src="/spotify.svg" alt="logo" />
           <div className="sidebar-links-container">
             <div className="links-container">
-              <a className="link" href="">
+              <div className="link">
                 <img className="icon" src="/home-solid.svg" alt="logo" />
-                Home
-              </a>
-              <a className="link" href="">
+                <Link href="">Home</Link>
+              </div>
+              <div className="link">
                 <img className="icon" src="/search-solid.svg" alt="logo" />
-                Search
-              </a>
-              <a className="link" href="">
+                <Link href="">Search</Link>
+              </div>
+              <div className="link">
                 <img className="icon" src="/book-open-solid.svg" alt="logo" />
-                Your Library
-              </a>
+                <Link href="/collection/playlists" as={`/collection/playlists`}>
+                  <a> Your Library</a>
+                </Link>
+              </div>
             </div>
             <h6 className="title">PLAYLISTS</h6>
             <div className="links-container">
