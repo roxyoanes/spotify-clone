@@ -13,6 +13,7 @@ interface IProps {
   profileData: IProfileData;
   openSidebar: boolean;
   libraryMenu?: boolean;
+  profileUserName?: boolean;
 }
 
 const Navbar: FC<IProps> = ({
@@ -20,6 +21,7 @@ const Navbar: FC<IProps> = ({
   openSidebar,
   profileData,
   libraryMenu,
+  profileUserName,
 }) => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { scrolled } = scrollHook();
@@ -31,7 +33,7 @@ const Navbar: FC<IProps> = ({
   };
 
   return (
-    <StyledNavbar>
+    <StyledNavbar libraryMenu={libraryMenu}>
       <div className={scrolled ? "navbar-scrolled" : "navbar-container"}>
         <div>
           {!openSidebar ? (
@@ -64,6 +66,13 @@ const Navbar: FC<IProps> = ({
           </div>
         ) : null}
 
+        {profileUserName && (
+          <div>
+            {scrolled ? (
+              <h4 className="user-name">{profileData.display_name}</h4>
+            ) : null}
+          </div>
+        )}
         {libraryMenu && (
           <div>
             <nav className="library-list">
