@@ -16,7 +16,8 @@ const StyledNavbar = styled.div`
   .navbar-container {
     padding: 10px 0;
     display: grid;
-    grid-template-columns: repeat(3, 0.5fr) 2fr;
+    grid-template-columns: ${({ libraryMenu }) =>
+      libraryMenu === true ? "repeat(3, .5fr) 2fr" : "repeat(2, .5fr) 2fr"};
     background-color: #131413;
     align-items: center;
   }
@@ -30,6 +31,11 @@ const StyledNavbar = styled.div`
   .user-menu-arrow {
     padding: 0 6px;
   }
+  .user-name {
+    margin: 0;
+    color: white;
+    font-size: 22px;
+  }
   .navbar-scrolled {
     position: fixed;
     top: 0;
@@ -37,7 +43,8 @@ const StyledNavbar = styled.div`
     width: -moz-available;
     padding: 10px 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr) 2fr;
+    grid-template-columns: ${({ libraryMenu }) =>
+      libraryMenu === true ? "repeat(3, .5fr) 2fr" : "repeat(2, .5fr) 2fr"};
     align-items: center;
   }
   .sidebar-btn {
