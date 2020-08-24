@@ -18,9 +18,6 @@ const UserPlaylists: FC<IProps> = ({ userPlaylists }) => {
           <div>
             <h4 className="playlist-name">{playlistName.name}</h4>
           </div>
-
-          {/*<a href={playlistName.external_urls.spotify}>dd</a>
-           */}
         </div>
       ))}
     </>
