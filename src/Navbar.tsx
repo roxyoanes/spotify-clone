@@ -86,18 +86,19 @@ const Navbar: FC<IProps> = ({
                 currentClassName="navbar-is-current"
               >
                 {[
-                  { value: "Playlists", href: "#playlists" },
-                  { value: "Podcasts", href: "#podcasts" },
-                  { value: "Artists", href: "#artists" },
-                  { value: "Albums", href: "#albums" },
+                  { value: "Playlists", href: "playlists" },
+                  { value: "Podcasts", href: "podcasts" },
+                  { value: "Artists", href: "artists" },
+                  { value: "Albums", href: "albums" },
                 ].map((navElement) => (
-                  <a
-                    href={navElement.href}
-                    key={navElement.value}
-                    className="library-item"
-                  >
-                    {navElement.value}
-                  </a>
+                  <div className="library-item" key={navElement.value}>
+                    <Link
+                      href={`/collection/${navElement.href}`}
+                      as={`/collection/${navElement.href}`}
+                    >
+                      {navElement.value}
+                    </Link>
+                  </div>
                 ))}
               </Scrollspy>
             </nav>
