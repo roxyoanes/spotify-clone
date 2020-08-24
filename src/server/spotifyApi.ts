@@ -1,6 +1,12 @@
 import SpotifyWebApi from "spotify-web-api-node";
 
-export const scopes = ["user-read-private", "user-read-email"],
+export const scopes = [
+    "user-read-private",
+    "user-read-email",
+    "user-library-read",
+    "user-read-recently-played",
+    "user-read-private",
+  ],
   redirectUri = "http://localhost:3000/login",
   clientId = process.env.CLIENT_ID,
   clientSecret = process.env.CLIENT_SECRET;
