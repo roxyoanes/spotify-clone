@@ -8,8 +8,6 @@ interface IProps {
 }
 
 const Album: NextPage<IProps> = ({ albumData }) => {
-  console.log("album", albumData);
-
   return (
     <StyledAlbum>
       <div className="container">
