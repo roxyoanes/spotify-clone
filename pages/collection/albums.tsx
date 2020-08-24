@@ -7,7 +7,7 @@ import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
-import Library from "../../src/Library";
+import AlbumsCard from "../../src/YourLibrary/AlbumsCard";
 import { spotifyApi } from "../../src/server/spotifyApi";
 
 interface IStyledProps {
@@ -28,7 +28,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const YourLibrary: NextPage<IProps> = ({ profileData }) => {
+const Albums: NextPage<IProps> = ({ profileData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -41,7 +41,7 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
           profileData={profileData}
           libraryMenu={true}
         />
-        <Library />
+        <AlbumsCard />
         <Global
           styles={css`
             html,
@@ -65,14 +65,11 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
   );
 };
 
-YourLibrary.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
+Albums.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
-
-  const savedAlbums = await spotifyApi.getMySavedAlbums();
 
   return {
     profileData: store.profile,
-    savedAlbums: savedAlbums.body,
   };
 };
-export default withRedux(YourLibrary);
+export default withRedux(Albums);
