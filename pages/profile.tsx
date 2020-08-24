@@ -44,6 +44,7 @@ const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
             openSidebar={openSidebar}
             profileData={profileData}
             toggleSidebar={toggleSidebar}
+            profileUserName={true}
           />
 
           <UserProfile
