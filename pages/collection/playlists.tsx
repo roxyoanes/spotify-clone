@@ -68,11 +68,8 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
 YourLibrary.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
-  const savedAlbums = await spotifyApi.getMySavedAlbums();
-
   return {
     profileData: store.profile,
-    savedAlbums: savedAlbums.body,
   };
 };
 export default withRedux(YourLibrary);
