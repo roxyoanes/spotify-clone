@@ -1,20 +1,20 @@
 import { NextPage } from "next";
 
 import StyledAlbums from "../styles/YourLibrary/albums";
+import { IGetUserAlbums } from "../types";
 
 interface IProps {
-  savedAlbums: any;
+  savedAlbums: IGetUserAlbums;
 }
 
 const AlbumsCard: NextPage<IProps> = ({ savedAlbums }) => {
-  console.log("dd", savedAlbums);
   return (
     <StyledAlbums>
       <div className="container">
         <h1 className="card-title">Albums</h1>
         <div className="albums-wrapper">
           {savedAlbums.items.map((savedAlbum) => (
-            <div className="card" key={savedAlbum.id}>
+            <div className="card" key={savedAlbum.album.id}>
               <img
                 className="album-pic"
                 src={savedAlbum.album.images[0].url}

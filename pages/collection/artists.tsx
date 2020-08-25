@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import { IProfileData, IFollowedArtists } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -12,9 +12,11 @@ import { spotifyApi } from "../../src/server/spotifyApi";
 
 interface IStyledProps {
   opensidebar: boolean;
+  followedArtists: IFollowedArtists;
 }
 interface IProps {
   profileData: IProfileData;
+  followedArtists: IFollowedArtists;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -28,20 +30,26 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const Artists: NextPage<IProps> = ({ profileData }) => {
+const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <StyledContainer opensidebar={openSidebar}>
+    <StyledContainer
+      opensidebar={openSidebar}
+      followedArtists={followedArtists}
+    >
       <Sidebar openSidebar={openSidebar} />
-      <StyledRightSideContainer opensidebar={openSidebar}>
+      <StyledRightSideContainer
+        opensidebar={openSidebar}
+        followedArtists={followedArtists}
+      >
         <Navbar
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
           profileData={profileData}
           libraryMenu={true}
         />
-        <ArtistsCard />
+        <ArtistsCard followedArtists={followedArtists} />
         <Global
           styles={css`
             html,
@@ -68,8 +76,11 @@ const Artists: NextPage<IProps> = ({ profileData }) => {
 Artists.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
+  const followedArtists = await spotifyApi.getFollowedArtists();
+
   return {
     profileData: store.profile,
+    followedArtists: followedArtists.body,
   };
 };
 export default withRedux(Artists);
