@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import { IProfileData, IGetUserAlbums } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -12,9 +12,11 @@ import { spotifyApi } from "../../src/server/spotifyApi";
 
 interface IStyledProps {
   opensidebar: boolean;
+  savedAlbums: IGetUserAlbums;
 }
 interface IProps {
   profileData: IProfileData;
+  savedAlbums: IGetUserAlbums;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -32,9 +34,12 @@ const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <StyledContainer opensidebar={openSidebar}>
+    <StyledContainer opensidebar={openSidebar} savedAlbums={savedAlbums}>
       <Sidebar openSidebar={openSidebar} />
-      <StyledRightSideContainer opensidebar={openSidebar}>
+      <StyledRightSideContainer
+        opensidebar={openSidebar}
+        savedAlbums={savedAlbums}
+      >
         <Navbar
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
