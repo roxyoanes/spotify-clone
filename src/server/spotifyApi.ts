@@ -6,6 +6,7 @@ export const scopes = [
     "user-library-read",
     "user-read-recently-played",
     "user-read-private",
+    "user-follow-read",
   ],
   redirectUri = "http://localhost:3000/login",
   clientId = process.env.CLIENT_ID,
