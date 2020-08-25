@@ -25,10 +25,10 @@ const StyledContainer = styled.div<IStyledProps>`
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
-  background: linear-gradient(#212121, #131413);
+  display: grid;
 `;
 
-const Albums: NextPage<IProps> = ({ profileData }) => {
+const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -41,7 +41,7 @@ const Albums: NextPage<IProps> = ({ profileData }) => {
           profileData={profileData}
           libraryMenu={true}
         />
-        <AlbumsCard />
+        <AlbumsCard savedAlbums={savedAlbums} />
         <Global
           styles={css`
             html,
@@ -68,8 +68,11 @@ const Albums: NextPage<IProps> = ({ profileData }) => {
 Albums.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
+  const savedAlbums = await spotifyApi.getMySavedAlbums();
+
   return {
     profileData: store.profile,
+    savedAlbums: savedAlbums.body,
   };
 };
 export default withRedux(Albums);
