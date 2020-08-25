@@ -1,10 +1,14 @@
 import { NextPage } from "next";
 
 import StyledAlbum from "../styles/album";
+import { IFollowedArtists } from "../types";
 
-interface IProps {}
+interface IProps {
+  followedArtists: IFollowedArtists;
+}
 
-const ArtistsCard: NextPage<IProps> = () => {
+const ArtistsCard: NextPage<IProps> = ({ followedArtists }) => {
+  console.log("sss", followedArtists);
   return (
     <StyledAlbum>
       <div className="container">
