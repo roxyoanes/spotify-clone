@@ -27,7 +27,7 @@ const StyledContainer = styled.div<IStyledProps>`
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
-  background: linear-gradient(#212121, #131413);
+  display: grid;
 `;
 
 const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
