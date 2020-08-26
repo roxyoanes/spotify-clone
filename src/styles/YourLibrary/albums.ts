@@ -10,6 +10,7 @@ const StyledAlbums = styled.div`
     justify-content: center;
     grid-gap: 30px;
     margin: 0 20px;
+    padding-bottom: 40px;
   }
   .card-title {
     margin: 20px 30px;
