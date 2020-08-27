@@ -16,7 +16,9 @@ const Sidebar: FC<IProps> = ({ openSidebar }) => {
             <div className="links-container">
               <div className="link">
                 <img className="icon" src="/home-solid.svg" alt="logo" />
-                <Link href="">Home</Link>
+                <Link href="/" as={`/`}>
+                  Home
+                </Link>
               </div>
               <div className="link">
                 <img className="icon" src="/search-solid.svg" alt="logo" />
@@ -35,10 +37,12 @@ const Sidebar: FC<IProps> = ({ openSidebar }) => {
                 <img className="icon-plus" src="/plus-solid.svg" alt="logo" />
                 Create Playlist
               </a>
-              <a className="link" href="">
+              <div className="link">
                 <img className="icon" src="/heart-solid.svg" alt="logo" />
-                Liked Songs
-              </a>
+                <Link href="/collection/tracks" as={`/collection/tracks`}>
+                  <a> Liked Songs </a>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="footer">
