@@ -82,9 +82,16 @@ const LikedTracksCard: NextPage<IProps> = ({ profileData, savedTracks }) => {
               <p className="info-artist" key={savedTrack.track.album.id}>
                 {savedTrack.added_at}
               </p>
-              <p className="info-artist" key={savedTrack.track.album.id}>
-                {convertMilliseconds(savedTrack.track.duration_ms)}
-              </p>
+              <div>
+                <img
+                  className="heart-icon"
+                  src="/heart-solid.svg"
+                  alt="heart-icon"
+                />
+                <p className="info-artist" key={savedTrack.track.album.id}>
+                  {convertMilliseconds(savedTrack.track.duration_ms)}
+                </p>
+              </div>
             </div>
           ))}
         </div>
