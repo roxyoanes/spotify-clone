@@ -4,12 +4,11 @@ const StyledLikedTracks = styled.div`
   color: white;
   background-color: #131413;
 
-  .container {
-    padding: 40px;
-  }
   .wrapper-header {
     display: flex;
     align-items: center;
+    background-color: rgb(70, 62, 118);
+    padding: 40px 60px;
   }
   .icon-background {
     background: linear-gradient(135deg, #450af5, #c4efd9);
@@ -22,17 +21,15 @@ const StyledLikedTracks = styled.div`
   .card-title {
     font-size: 65px;
     margin: 10px 0;
+    display: flex;
+    align-items: center;
   }
   .card {
     border-radius: 15px;
     padding: 15px 0;
     cursor: pointer;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-  }
-  .card-title {
-    display: flex;
+    grid-template-columns: 4fr repeat(2, 2fr) 1fr;
     align-items: center;
   }
   .user-pic {
@@ -43,14 +40,18 @@ const StyledLikedTracks = styled.div`
   .button-container {
     display: flex;
     align-items: center;
-    padding: 20px 0;
+    padding: 40px;
   }
   .tracks-header {
     color: #b3b3b3;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 4fr repeat(2, 2fr) 1fr;
     align-items: center;
+    padding: 0 40px;
+  }
+  .tracks-wrapper {
+    padding: 0 40px;
   }
 
   .clock-icon {
@@ -89,6 +90,10 @@ const StyledLikedTracks = styled.div`
   }
   .tracks-pic {
     height: 60px;
+  }
+  .heart-icon {
+    height: 20px;
+    color: #1db954;
   }
 `;
 
