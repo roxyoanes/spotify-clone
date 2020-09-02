@@ -26,11 +26,18 @@ const StyledSidebar = styled.div<IProps>`
     margin-right: 15px;
   }
 
+  .h-icon {
+    width: 7%;
+    margin-right: 15px;
+    background: linear-gradient(135deg, #450af5, #c4efd9);
+    padding: 10px;
+  }
+
   .icon-plus {
     background-color: #b3b3b3;
-    width: 8%;
+    width: 6%;
     margin-right: 15px;
-    padding: 5px;
+    padding: 10px;
   }
 
   .links-container {
