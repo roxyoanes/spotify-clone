@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 const StyledNavbar = styled.div`
-  background-color: #131413;
   color: #b3b3b3;
 
   button {
@@ -18,7 +17,6 @@ const StyledNavbar = styled.div`
     display: grid;
     grid-template-columns: ${({ libraryMenu }) =>
       libraryMenu === true ? "repeat(3, .5fr) 2fr" : "repeat(2, .5fr) 2fr"};
-    background-color: #131413;
     align-items: center;
   }
   .arrow-btn {
@@ -83,6 +81,10 @@ const StyledNavbar = styled.div`
     font-size: 14px;
     font-weight: 700;
     padding: 5px;
+    color: white;
+  }
+  .liked-songs {
+    font-size: 22px;
     color: white;
   }
 `;
