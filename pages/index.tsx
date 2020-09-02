@@ -24,7 +24,7 @@ const StyledContainer = styled.div<IStyledProps>`
   grid-template-rows: 1fr;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "1fr 4fr" : "1fr"};
-  background-color: #131413;
+  background: #131413;
   overflow-y: hidden;
   padding-bottom: 40px;
 `;
