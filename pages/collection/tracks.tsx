@@ -9,6 +9,7 @@ import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import { spotifyApi } from "../../src/server/spotifyApi";
 import LikedTracksCard from "../../src/YourLibrary/LikedTracksCard";
+import LikedTracksHeader from "../../src/YourLibrary/LikedTracksHeader";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -30,6 +31,10 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
 `;
 
+const StyledBackground = styled.div<IStyledProps>`
+  background-color: rgb(70, 62, 118);
+`;
+
 const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
@@ -40,13 +45,17 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
         opensidebar={openSidebar}
         savedTracks={savedTracks}
       >
-        <Navbar
-          openSidebar={openSidebar}
-          toggleSidebar={toggleSidebar}
-          profileData={profileData}
-          libraryMenu={true}
-        />
+        <StyledBackground opensidebar={openSidebar} savedTracks={savedTracks}>
+          <Navbar
+            openSidebar={openSidebar}
+            toggleSidebar={toggleSidebar}
+            profileData={profileData}
+            likedTracks={true}
+          />
+          <LikedTracksHeader profileData={profileData} />
+        </StyledBackground>
         <LikedTracksCard savedTracks={savedTracks} profileData={profileData} />
+
         <Global
           styles={css`
             html,

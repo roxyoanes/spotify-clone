@@ -24,6 +24,7 @@ const StyledContainer = styled.div<IStyledProps>`
   display: grid;
   grid-template-columns: ${({ opensidebar }) =>
     opensidebar === true ? "1fr 4fr" : "1fr"};
+  background: #131413;
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
