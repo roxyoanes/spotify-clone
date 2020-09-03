@@ -40,6 +40,8 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
           toggleSidebar={toggleSidebar}
           profileData={profileData}
           libraryMenu={true}
+          navbarDefault={false}
+          navbarDefaultScrolled={false}
         />
         <Library />
         <Global

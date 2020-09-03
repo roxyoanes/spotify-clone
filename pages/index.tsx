@@ -58,6 +58,8 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
           profileData={profileData}
+          navbarDefault={true}
+          navbarDefaultScrolled={true}
         />
 
         {token ? (

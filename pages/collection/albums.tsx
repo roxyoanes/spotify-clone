@@ -46,6 +46,8 @@ const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
           toggleSidebar={toggleSidebar}
           profileData={profileData}
           libraryMenu={true}
+          navbarDefault={false}
+          navbarDefaultScrolled={false}
         />
         <AlbumsCard savedAlbums={savedAlbums} />
         <Global

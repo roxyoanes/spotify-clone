@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import { IProfileData, ISavedTracks } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -13,11 +13,11 @@ import LikedTracksHeader from "../../src/YourLibrary/LikedTracksHeader";
 
 interface IStyledProps {
   opensidebar: boolean;
-  savedTracks: any;
+  savedTracks: ISavedTracks;
 }
 interface IProps {
   profileData: IProfileData;
-  savedTracks: any;
+  savedTracks: ISavedTracks;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -51,6 +51,8 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
             toggleSidebar={toggleSidebar}
             profileData={profileData}
             likedTracks={true}
+            navbarDefault={true}
+            navbarDefaultScrolled={false}
           />
           <LikedTracksHeader profileData={profileData} />
         </StyledBackground>

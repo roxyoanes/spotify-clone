@@ -40,6 +40,8 @@ const Podcasts: NextPage<IProps> = ({ profileData }) => {
           toggleSidebar={toggleSidebar}
           profileData={profileData}
           libraryMenu={true}
+          navbarDefault={false}
+          navbarDefaultScrolled={false}
         />
         <PodcastsCard />
         <Global

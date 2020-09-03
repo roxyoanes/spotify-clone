@@ -49,6 +49,8 @@ const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
           toggleSidebar={toggleSidebar}
           profileData={profileData}
           libraryMenu={true}
+          navbarDefault={false}
+          navbarDefaultScrolled={false}
         />
         <ArtistsCard followedArtists={followedArtists} />
         <Global
