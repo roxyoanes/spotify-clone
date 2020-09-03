@@ -18,17 +18,17 @@ const StyledLikedTracksHeader = styled.div`
   .text-card {
     padding: 20px 40px;
   }
-  .user-info-container {
-    display: flex;
-    align-items: center;
-  }
-
   .card-title {
     font-size: 65px;
     margin: 10px 0;
     display: flex;
     align-items: center;
   }
+  .user-info-container {
+    display: flex;
+    align-items: center;
+  }
+
   .user-pic {
     height: 25px;
     border-radius: 50%;
