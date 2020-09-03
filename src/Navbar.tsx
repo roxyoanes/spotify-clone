@@ -14,6 +14,9 @@ interface IProps {
   openSidebar: boolean;
   libraryMenu?: boolean;
   profileUserName?: boolean;
+  likedTracks?: boolean;
+  navbarDefault?: boolean;
+  navbarDefaultScrolled?: boolean;
 }
 
 const Navbar: FC<IProps> = ({
@@ -22,6 +25,9 @@ const Navbar: FC<IProps> = ({
   profileData,
   libraryMenu,
   profileUserName,
+  likedTracks,
+  navbarDefault,
+  navbarDefaultScrolled,
 }) => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { scrolled } = scrollHook();
@@ -33,7 +39,10 @@ const Navbar: FC<IProps> = ({
   };
 
   return (
-    <StyledNavbar libraryMenu={libraryMenu}>
+    <StyledNavbar
+      navbarDefault={navbarDefault}
+      navbarDefaultScrolled={navbarDefaultScrolled}
+    >
       <div className={scrolled ? "navbar-scrolled" : "navbar-container"}>
         <div>
           {!openSidebar ? (
@@ -67,11 +76,14 @@ const Navbar: FC<IProps> = ({
         ) : null}
 
         {profileUserName && (
-          <div>
+          <>
             {scrolled ? (
               <h4 className="user-name">{profileData.display_name}</h4>
             ) : null}
-          </div>
+          </>
+        )}
+        {likedTracks && (
+          <>{scrolled ? <h4 className="liked-songs">Liked Songs</h4> : null}</>
         )}
         {libraryMenu && (
           <div>
@@ -104,7 +116,6 @@ const Navbar: FC<IProps> = ({
             </nav>
           </div>
         )}
-
         <div className="user-menu">
           <div>
             {!token ? (
@@ -114,7 +125,7 @@ const Navbar: FC<IProps> = ({
             ) : null}
 
             {token ? (
-              <button className="user" onClick={toggleMenuUser}>
+              <button className="btn-user" onClick={toggleMenuUser}>
                 <img
                   className="user-pic"
                   src={profileData.images[0].url}
