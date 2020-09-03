@@ -1,10 +1,14 @@
 import styled from "@emotion/styled";
 
-const StyledNavbar = styled.div`
+interface IProps {
+  navbarDefault: boolean;
+  navbarDefaultScrolled: boolean;
+}
+const StyledNavbar = styled.div<IProps>`
   color: #b3b3b3;
 
   button {
-    background-color: black;
+    background-color: transparent;
     border-color: transparent;
     color: #fff;
     border-radius: 50px;
@@ -15,8 +19,8 @@ const StyledNavbar = styled.div`
   .navbar-container {
     padding: 10px 0;
     display: grid;
-    grid-template-columns: ${({ libraryMenu }) =>
-      libraryMenu === true ? "repeat(3, .5fr) 2fr" : "repeat(2, .5fr) 2fr"};
+    grid-template-columns: ${({ navbarDefault }) =>
+      navbarDefault === true ? "repeat(2, .5fr) 2fr" : "repeat(3, .5fr) 2fr"};
     align-items: center;
   }
   .arrow-btn {
@@ -41,20 +45,22 @@ const StyledNavbar = styled.div`
     width: -moz-available;
     padding: 10px 0;
     display: grid;
-    grid-template-columns: ${({ libraryMenu }) =>
-      libraryMenu === true ? "repeat(3, .5fr) 2fr" : "repeat(2, .5fr) 2fr"};
+    grid-template-columns: ${({ navbarDefaultScrolled }) =>
+      navbarDefaultScrolled === true
+        ? "repeat(2, .5fr) 2fr"
+        : "repeat(3, .5fr) 2fr"};
     align-items: center;
   }
   .sidebar-btn {
     padding: 5px 10px;
   }
   .user-menu-list {
-    margin-top: 10px;
+    margin-top: 5px;
     transition: height 0.3s;
     position: absolute;
-    background-color: #131413;
-    padding: 5px 60px 12px 5px;
-    border-radius: 12px;
+    background-color: #333;
+    padding: 5px 90px 12px 5px;
+    border-radius: 8px;
   }
   .user-menu {
     display: flex;
@@ -71,6 +77,12 @@ const StyledNavbar = styled.div`
     display: flex;
     align-items: center;
   }
+  .btn-user {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+  }
   .user-pic {
     height: 35px;
     border-radius: 50%;
@@ -86,6 +98,7 @@ const StyledNavbar = styled.div`
   .liked-songs {
     font-size: 22px;
     color: white;
+    margin: 0;
   }
 `;
 
