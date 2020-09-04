@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import { NextPage } from "next";
+import { useState } from "react";
 
 import Sidebar from "../src/Sidebar";
 import Categories from "../src/Categories";
@@ -13,6 +14,7 @@ import { IAlbum, IPlaylist, IProfileData } from "../src/types";
 import { useSelector } from "react-redux";
 import { setProfileDataAction } from "../src/redux/actions";
 import toggleSidebarHook from "../src/toggleSidebarHook";
+import CreatePlaylist from "../src/CreatePlaylist";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -40,6 +42,7 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
+  const [isShowing, setIsShowing] = useState(false);
   const dispatch = useDispatch();
 
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
@@ -50,9 +53,14 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
     dispatch(setProfileDataAction(profileData));
   }, []);
 
+  const toggleModal = () => {
+    setIsShowing(!isShowing);
+    console.log("d", isShowing);
+  };
+
   return (
     <StyledContainer opensidebar={openSidebar}>
-      <Sidebar openSidebar={openSidebar} />
+      <Sidebar openSidebar={openSidebar} toggleModal={toggleModal} />
       <StyledRightSideContainer opensidebar={openSidebar}>
         <Navbar
           openSidebar={openSidebar}
@@ -65,7 +73,7 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
         {token ? (
           <Categories newReleases={newReleases} playlists={playlists} />
         ) : null}
-
+        {isShowing ? <CreatePlaylist toggleModal={toggleModal} /> : null}
         <Global
           styles={css`
             html,
