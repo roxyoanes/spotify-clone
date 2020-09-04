@@ -42,6 +42,8 @@ const PlaylistId: NextPage<IProps> = ({ profileData, playlist }) => {
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
           profileData={profileData}
+          navbarDefault={true}
+          navbarDefaultScrolled={true}
         />
         <Playlist playlist={playlist} />
         <Global

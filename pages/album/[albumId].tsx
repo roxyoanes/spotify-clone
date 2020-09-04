@@ -42,6 +42,8 @@ const AlbumId: NextPage<IProps> = ({ profileData, albumData }) => {
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
           profileData={profileData}
+          navbarDefault={true}
+          navbarDefaultScrolled={true}
         />
         <Album albumData={albumData} />
         <Global

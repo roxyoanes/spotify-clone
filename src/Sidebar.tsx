@@ -4,9 +4,10 @@ import Link from "next/link";
 
 interface IProps {
   openSidebar: boolean;
+  toggleModal: () => void;
 }
 
-const Sidebar: FC<IProps> = ({ openSidebar }) => {
+const Sidebar: FC<IProps> = ({ openSidebar, toggleModal }) => {
   return (
     <StyledSidebar opensidebar={openSidebar}>
       <div className="sidebar-wrapper">
@@ -33,12 +34,12 @@ const Sidebar: FC<IProps> = ({ openSidebar }) => {
             </div>
             <h6 className="title">PLAYLISTS</h6>
             <div className="links-container">
-              <a className="link" href="">
+              <button className="link" onClick={toggleModal}>
                 <img className="icon-plus" src="/plus-solid.svg" alt="logo" />
                 Create Playlist
-              </a>
+              </button>
               <div className="link">
-                <img className="icon" src="/heart-solid.svg" alt="logo" />
+                <img className="h-icon" src="/heart-solid.svg" alt="logo" />
                 <Link href="/collection/tracks" as={`/collection/tracks`}>
                   <a> Liked Songs </a>
                 </Link>
