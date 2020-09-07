@@ -52,6 +52,13 @@ const StyledSidebar = styled.div<IProps>`
     font-weight: 600;
     display: flex;
     align-items: center;
+    background: transparent;
+    border-color: transparent;
+    color: #b3b3b3;
+
+    &:hover {
+      color: white;
+    }
   }
 
   .title {
