@@ -16,6 +16,7 @@ const StyledNavbar = styled.div<IProps>`
     font-weight: 600;
     margin: 0 5px;
   }
+
   .navbar-container {
     padding: 10px 0;
     display: grid;
@@ -81,7 +82,10 @@ const StyledNavbar = styled.div<IProps>`
     margin-right: 30px;
     display: flex;
     align-items: center;
-    background-color: #333;
+
+    &:hover {
+      background-color: #333;
+    }
   }
   .user-pic {
     height: 35px;
