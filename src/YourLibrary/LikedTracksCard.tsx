@@ -47,11 +47,13 @@ const LikedTracksCard: NextPage<IProps> = ({ savedTracks }) => {
                 <p className="song-name" key={savedTrack.track.id}>
                   {savedTrack.track.name}
                 </p>
-                {savedTrack.track.album.artists.map((artist) => (
-                  <p className="artist-name" key={artist.id}>
-                    {artist.name}
-                  </p>
-                ))}
+                <div className="artists-container">
+                  {savedTrack.track.album.artists.map((artist) => (
+                    <p className="artist-name" key={artist.id}>
+                      {artist.name}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
 
