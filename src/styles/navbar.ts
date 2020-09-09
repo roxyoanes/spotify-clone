@@ -26,6 +26,8 @@ const StyledNavbar = styled.div<IProps>`
   }
   .arrow-btn {
     padding: 0 10px;
+    background: black;
+    cursor: pointer;
   }
   .arrow-img,
   .user-menu-arrow {
@@ -54,6 +56,8 @@ const StyledNavbar = styled.div<IProps>`
   }
   .sidebar-btn {
     padding: 5px 10px;
+    background: black;
+    cursor: pointer;
   }
   .user-menu-list {
     margin-top: 5px;
@@ -82,9 +86,10 @@ const StyledNavbar = styled.div<IProps>`
     margin-right: 30px;
     display: flex;
     align-items: center;
+    background: black;
 
-    &:hover {
-      background-color: #333;
+    :hover {
+      background: #333;
     }
   }
   .user-pic {
