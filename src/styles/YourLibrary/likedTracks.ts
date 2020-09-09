@@ -32,11 +32,10 @@ const StyledLikedTracks = styled.div`
   }
 
   .tracks-wrapper {
-    padding: 0 40px;
+    padding: 15px 30px;
   }
   .card {
     border-radius: 15px;
-    padding: 15px 0;
     cursor: pointer;
     display: grid;
     grid-template-columns: 4fr repeat(2, 2fr) 1fr;
@@ -49,7 +48,7 @@ const StyledLikedTracks = styled.div`
     align-items: center;
   }
   .song-index {
-    font-size: 20px;
+    font-size: 16px;
     color: #b3b3b3;
     margin: 0;
     padding-right: 20px;
@@ -59,10 +58,10 @@ const StyledLikedTracks = styled.div`
     height: 20px;
   }
   .text-card {
-    padding: 20px 40px;
+    padding: 0 20px;
   }
   .tracks-pic {
-    height: 60px;
+    height: 40px;
   }
 
   .info-artist {
@@ -78,9 +77,12 @@ const StyledLikedTracks = styled.div`
     font-size: 16px;
     margin: 0;
   }
+  .artists-container {
+    display: flex;
+  }
   .artist-name {
     font-size: 14px;
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   .heart-icon {
