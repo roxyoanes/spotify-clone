@@ -7,7 +7,7 @@ import Navbar from "../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import { IProfileData, IUserPlaylists } from "../src/types";
 import { NextPage } from "next";
-import { spotifyApi } from "../src/server/spotifyApi";
+import spotifyApi from "../src/server/spotifyApi";
 import toggleSidebarHook from "../src/toggleSidebarHook";
 
 interface IStyledProps {

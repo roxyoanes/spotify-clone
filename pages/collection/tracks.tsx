@@ -7,7 +7,7 @@ import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
-import { spotifyApi } from "../../src/server/spotifyApi";
+import spotifyApi from "../../src/server/spotifyApi";
 import LikedTracksCard from "../../src/YourLibrary/LikedTracksCard";
 import LikedTracksHeader from "../../src/YourLibrary/LikedTracksHeader";
 
@@ -32,7 +32,15 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
 `;
 
 const StyledBackground = styled.div<IStyledProps>`
-  background-color: rgb(70, 62, 118);
+  background: black;
+`;
+const StyledSecondaryBackground = styled.div<IStyledProps>`
+  background: linear-gradient(
+    to bottom,
+    rgb(70, 62, 118, 0.9),
+    rgb(70, 62, 118, 0.7),
+    rgb(70, 62, 118, 0.5)
+  );
 `;
 
 const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
@@ -46,15 +54,20 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
         savedTracks={savedTracks}
       >
         <StyledBackground opensidebar={openSidebar} savedTracks={savedTracks}>
-          <Navbar
-            openSidebar={openSidebar}
-            toggleSidebar={toggleSidebar}
-            profileData={profileData}
-            likedTracks={true}
-            navbarDefault={true}
-            navbarDefaultScrolled={false}
-          />
-          <LikedTracksHeader profileData={profileData} />
+          <StyledSecondaryBackground
+            opensidebar={openSidebar}
+            savedTracks={savedTracks}
+          >
+            <Navbar
+              openSidebar={openSidebar}
+              toggleSidebar={toggleSidebar}
+              profileData={profileData}
+              likedTracks={true}
+              navbarDefault={true}
+              navbarDefaultScrolled={false}
+            />
+            <LikedTracksHeader profileData={profileData} />
+          </StyledSecondaryBackground>
         </StyledBackground>
         <LikedTracksCard savedTracks={savedTracks} profileData={profileData} />
 

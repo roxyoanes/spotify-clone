@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { spotifyApi } from "../../src/server/spotifyApi";
+import spotifyApi from "../../src/server/spotifyApi";
 import { IProfileData, IGetPlaylist } from "../../src/types";
 import { NextPage } from "next";
 import Playlist from "../../src/Playlist";

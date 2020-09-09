@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import Sidebar from "../src/Sidebar";
 import Categories from "../src/Categories";
-import { spotifyApi } from "../src/server/spotifyApi";
+import spotifyApi from "../src/server/spotifyApi";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
 import { IAlbum, IPlaylist, IProfileData } from "../src/types";
@@ -43,6 +43,7 @@ interface IProps {
 
 const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   const [isShowing, setIsShowing] = useState(false);
+
   const dispatch = useDispatch();
 
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
@@ -55,7 +56,6 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
 
   const toggleModal = () => {
     setIsShowing(!isShowing);
-    console.log("d", isShowing);
   };
 
   return (
@@ -155,6 +155,7 @@ Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
     playlists.Workout = workout.body.playlists.items;
 
     const profileData = await spotifyApi.getMe();
+
     return {
       newReleases,
       playlists,
