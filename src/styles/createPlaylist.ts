@@ -10,9 +10,9 @@ const StyledCreatePlaylist = styled.div`
   position: fixed;
   background-color: rgba(2, 2, 7, 0.9);
   color: white;
-  padding: 10px 0;
+  padding: 80px 0;
 
-  .s {
+  .header {
     display: flex;
     flex-direction: column;
     align-items: center;
