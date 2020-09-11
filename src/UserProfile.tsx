@@ -10,10 +10,10 @@ interface IProps {
   userPlaylists: IUserPlaylists;
 }
 const UserProfile: FC<IProps> = ({ profileData, userPlaylists }) => {
-  const token = useSelector((state) => state.spotify.access_token);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   return (
     <StyledUserProfile>
-      {token ? (
+      {isLoggedIn ? (
         <div className="container">
           <div className="profile-card">
             <img
