@@ -4,8 +4,7 @@ import { NextPage } from "next";
 import Router from "next/router";
 
 import { authorizeURL } from "../src/server/spotifyApi";
-import { withRedux, IReduxStoreProps } from "../src/redux/redux";
-import { setTokenAction } from "../src/redux/actions";
+import { withRedux } from "../src/redux/redux";
 
 interface IProps {
   tokenUrl: string;
@@ -23,9 +22,6 @@ const Login: NextPage<IProps> = ({ tokenUrl }) => {
         method: "POST",
       })
         .then((response) => response.json())
-        .then((data) => {
-          dispatch(setTokenAction(data));
-        })
         .catch((error) => error);
     } else {
       if (tokenUrl) {
@@ -37,7 +33,7 @@ const Login: NextPage<IProps> = ({ tokenUrl }) => {
   return <button onClick={() => Router.push("/")}>Click me</button>;
 };
 
-Login.getInitialProps = ({ reduxStore }: IReduxStoreProps) => {
+Login.getInitialProps = () => {
   // Pass data to the page via props
   return { tokenUrl: authorizeURL };
 };
