@@ -7,8 +7,8 @@ import Navbar from "../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../src/redux/redux";
 import { IProfileData, IUserPlaylists } from "../src/types";
 import { NextPage } from "next";
-import spotifyApi from "../src/server/spotifyApi";
 import toggleSidebarHook from "../src/toggleSidebarHook";
+import { server } from "../config";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -81,12 +81,16 @@ const Profile: NextPage<IProps> = ({ profileData, userPlaylists }) => {
 
 Profile.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
-  const name = store.profile.display_name;
+  const userId = store.profile.id;
 
-  const userPlaylists = await spotifyApi.getUserPlaylists({ name });
+  const playlistsResponse = await fetch(
+    `${server}/api/get-user-playlists/${userId}`
+  );
+  const userPlaylists = await playlistsResponse.json();
+
   return {
+    ...userPlaylists,
     profileData: store.profile,
-    userPlaylists: userPlaylists.body,
   };
 };
 

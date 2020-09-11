@@ -8,7 +8,7 @@ import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import Album from "../../src/Album";
-import spotifyApi from "../../src/server/spotifyApi";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -71,13 +71,14 @@ const AlbumId: NextPage<IProps> = ({ profileData, albumData }) => {
 
 AlbumId.getInitialProps = async ({ query, reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
-
   const { albumId } = query;
-  const albumData = await spotifyApi.getAlbum(albumId);
+
+  const albumResponse = await fetch(`${server}/api/album/${albumId}`);
+  const albumData = await albumResponse.json();
 
   return {
     profileData: store.profile,
-    albumData: albumData.body,
+    ...albumData,
   };
 };
 export default withRedux(AlbumId);

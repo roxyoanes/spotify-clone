@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 
-import spotifyApi from "../../src/server/spotifyApi";
 import { IProfileData, IGetPlaylist } from "../../src/types";
 import { NextPage } from "next";
 import Playlist from "../../src/Playlist";
@@ -9,12 +8,13 @@ import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { IReduxStoreProps, withRedux } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
 }
 interface IProps {
-  playlist: IGetPlaylist;
+  playlistData: IGetPlaylist;
   profileData: IProfileData;
 }
 
@@ -31,7 +31,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const PlaylistId: NextPage<IProps> = ({ profileData, playlist }) => {
+const PlaylistId: NextPage<IProps> = ({ profileData, playlistData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -45,7 +45,7 @@ const PlaylistId: NextPage<IProps> = ({ profileData, playlist }) => {
           navbarDefault={true}
           navbarDefaultScrolled={true}
         />
-        <Playlist playlist={playlist} />
+        <Playlist playlist={playlistData} />
         <Global
           styles={css`
             html,
@@ -77,13 +77,14 @@ interface IServerProps extends IReduxStoreProps {
 
 PlaylistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const store = reduxStore.getState();
-
   const { playlistId } = query;
-  const playlist = await spotifyApi.getPlaylist(playlistId);
+
+  const playlistResponse = await fetch(`${server}/api/playlist/${playlistId}`);
+  const playlistData = await playlistResponse.json();
 
   return {
     profileData: store.profile,
-    playlist: playlist.body,
+    ...playlistData,
   };
 };
 export default withRedux(PlaylistId);
