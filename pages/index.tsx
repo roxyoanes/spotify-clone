@@ -7,14 +7,13 @@ import { useState } from "react";
 
 import Sidebar from "../src/Sidebar";
 import Categories from "../src/Categories";
-import spotifyApi from "../src/server/spotifyApi";
-import { withRedux, IReduxStoreProps } from "../src/redux/redux";
+import { withRedux } from "../src/redux/redux";
 import Navbar from "../src/Navbar";
 import { IAlbum, IPlaylist, IProfileData } from "../src/types";
-import { useSelector } from "react-redux";
-import { setProfileDataAction } from "../src/redux/actions";
+import { setProfileDataAction, setLoginAction } from "../src/redux/actions";
 import toggleSidebarHook from "../src/toggleSidebarHook";
 import CreatePlaylist from "../src/CreatePlaylist";
+import { server } from "../config";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -35,23 +34,32 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
 `;
 
+interface IPlaylists {
+  [key: string]: IPlaylist[];
+}
+
 interface IProps {
   newReleases: IAlbum[];
   playlists: IPlaylists;
   profileData: IProfileData;
+  isLoggedIn?: boolean;
 }
 
-const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
+const Home: NextPage<IProps> = ({
+  profileData,
+  newReleases,
+  playlists,
+  isLoggedIn,
+}) => {
   const [isShowing, setIsShowing] = useState(false);
 
   const dispatch = useDispatch();
 
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
-  const token = useSelector((state) => state.spotify.access_token);
-
   useEffect(() => {
     dispatch(setProfileDataAction(profileData));
+    dispatch(setLoginAction(isLoggedIn));
   }, []);
 
   const toggleModal = () => {
@@ -70,10 +78,12 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
           navbarDefaultScrolled={true}
         />
 
-        {token ? (
+        {isLoggedIn ? (
           <Categories newReleases={newReleases} playlists={playlists} />
         ) : null}
-        {isShowing ? <CreatePlaylist toggleModal={toggleModal} /> : null}
+        {isShowing ? (
+          <CreatePlaylist userId={profileData.id} toggleModal={toggleModal} />
+        ) : null}
         <Global
           styles={css`
             html,
@@ -97,71 +107,17 @@ const Home: NextPage<IProps> = ({ profileData, newReleases, playlists }) => {
   );
 };
 
-interface IPlaylists {
-  [key: string]: IPlaylist[];
-}
+Home.getInitialProps = async () => {
+  const playlistsResponse = await fetch(`${server}/api/getPlaylists`);
+  const playlistsData = await playlistsResponse.json();
 
-Home.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
-  const store = reduxStore.getState();
+  const profileResponse = await fetch(`${server}/api/getProfileData`);
+  const profileData = await profileResponse.json();
 
-  if (store.spotify.access_token) {
-    spotifyApi.setAccessToken(store.spotify.access_token);
-    const releasesList = await spotifyApi.getNewReleases({
-      limit: 5,
-      offset: 0,
-      country: "ES",
-    });
-    const data = await spotifyApi.getNewReleases([
-      releasesList.body.albums.items.map((el) => el.id),
-    ]);
-    const newReleases: IAlbum[] = data.body.albums.items.slice(0, 5);
-
-    const playlists: IPlaylists = {};
-
-    const category = await spotifyApi.getPlaylistsForCategory("party", {
-      limit: 5,
-      offset: 0,
-    });
-    playlists.Party = category.body.playlists.items;
-
-    const featured = await spotifyApi.getFeaturedPlaylists({
-      limit: 5,
-      offset: 1,
-    });
-    playlists.Featured = featured.body.playlists.items;
-
-    const chillPlaylist = await spotifyApi.getPlaylistsForCategory("chill", {
-      limit: 5,
-      offset: 0,
-    });
-    playlists.Chill = chillPlaylist.body.playlists.items;
-
-    const hipHopPlaylist = await spotifyApi.getPlaylistsForCategory("hiphop", {
-      limit: 5,
-      offset: 0,
-    });
-    playlists.HipHop = hipHopPlaylist.body.playlists.items;
-
-    const popPlaylist = await spotifyApi.getPlaylistsForCategory("pop", {
-      limit: 5,
-      offset: 0,
-    });
-    playlists.Pop = popPlaylist.body.playlists.items;
-
-    const workout = await spotifyApi.getPlaylistsForCategory("workout", {
-      limit: 5,
-      offset: 0,
-    });
-    playlists.Workout = workout.body.playlists.items;
-
-    const profileData = await spotifyApi.getMe();
-
-    return {
-      newReleases,
-      playlists,
-      profileData: profileData.body,
-    };
-  }
+  return {
+    ...playlistsData,
+    ...profileData,
+  };
 };
 
 export default withRedux(Home);
