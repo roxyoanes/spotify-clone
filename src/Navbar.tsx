@@ -32,7 +32,7 @@ const Navbar: FC<IProps> = ({
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { scrolled } = scrollHook();
 
-  const token = useSelector((state) => state.spotify.access_token);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   const toggleMenuUser = () => {
     setOpenUserMenu(!openUserMenu);
@@ -56,7 +56,7 @@ const Navbar: FC<IProps> = ({
           )}
         </div>
 
-        {token ? (
+        {isLoggedIn ? (
           <div className="arrows-container">
             <button className="arrow-btn" onClick={() => Router.back()}>
               <img
@@ -118,13 +118,13 @@ const Navbar: FC<IProps> = ({
         )}
         <div className="user-menu">
           <div>
-            {!token ? (
+            {!isLoggedIn ? (
               <Link href="/[login]" as={`/login`}>
                 <a>Login</a>
               </Link>
             ) : null}
 
-            {token ? (
+            {isLoggedIn ? (
               <button className="btn-user" onClick={toggleMenuUser}>
                 <img
                   className="user-pic"
