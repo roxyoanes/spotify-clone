@@ -8,6 +8,7 @@ export const scopes = [
     "user-read-private",
     "user-follow-read",
     "playlist-modify-private",
+    "playlist-modify-public",
   ],
   redirectUri = "http://localhost:3000/login",
   clientId = process.env.CLIENT_ID,
@@ -44,4 +45,9 @@ export const getAuthorizationCode = (code: string) => {
     });
 };
 
-export default spotifyApi;
+export const initializeSpotifyApi = (token) => {
+  const spotifyApiInstance = new SpotifyWebApi();
+  spotifyApiInstance.setAccessToken(token.access_token);
+  spotifyApiInstance.setRefreshToken(token.refresh_token);
+  return spotifyApiInstance;
+};
