@@ -12,7 +12,7 @@ const UserPlaylists: FC<IProps> = ({ userPlaylists }) => {
         <div className="card" key={playlistName.id}>
           <img
             className="card-img"
-            src={playlistName.images[0].url}
+            src={playlistName.images[0]?.url}
             alt="category-img"
           />
           <div>
