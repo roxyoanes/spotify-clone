@@ -1,16 +1,19 @@
+import { withIronSession } from "next-iron-session";
+
 import { getAuthorizationCode } from "../../src/server/spotifyApi";
 
-export default (req, res) => {
+const handler = (req, res) => {
   const {
     query: { code },
   } = req;
 
   getAuthorizationCode(code)
     .then(({ access_token, refresh_token }) => {
-      res.json({
+      req.session.set("token", {
         access_token,
         refresh_token,
       });
+      req.session.save().then(() => res.send("Logged in"));
     })
     .catch((err) => {
       console.log("Something went wrong!", err);
@@ -18,20 +21,11 @@ export default (req, res) => {
     });
 };
 
-/* const a = (d: string): void => console.log(d);
-
-const b = (d: string): string => d;
-
-type cType = (d: string) => void;
-
-const c: cType = (d) => console.log(d);
-
-type dType = (d: string) => string;
-
-const d: dType = (d) => d;
-
-interface ILili {
-  text: string;
-}
-
-const g: ILili = { text: "aa" }; */
+export default withIronSession(handler, {
+  password: "complex_password_at_least_32_characters_long",
+  // if your localhost is served on http:// then disable the secure flag
+  cookieName: "token",
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+  },
+});
