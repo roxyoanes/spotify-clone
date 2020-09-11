@@ -1,17 +1,12 @@
-import { IProfileData, IAlbum } from "../types";
+import { IProfileData } from "../types";
 
-export interface ISpotifyTokens {
-  access_token: string;
-  refresh_token: string;
+interface ISetLoginAction {
+  type: "SET_LOGIN";
+  payload: boolean;
 }
 
-interface ISetTokenAction {
-  type: "SET_TOKEN";
-  payload: ISpotifyTokens;
-}
-
-export const setTokenAction = (data: ISpotifyTokens): ISetTokenAction => ({
-  type: "SET_TOKEN",
+export const setLoginAction = (data: boolean): ISetLoginAction => ({
+  type: "SET_LOGIN",
   payload: data,
 });
 
@@ -27,4 +22,4 @@ export const setProfileDataAction = (
   payload: data,
 });
 
-export type IActions = ISetTokenAction | ISetProfileDataAction;
+export type IActions = ISetLoginAction | ISetProfileDataAction;

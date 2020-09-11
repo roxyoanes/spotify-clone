@@ -1,25 +1,22 @@
-import { IActions, ISpotifyTokens } from "./actions";
+import { IActions } from "./actions";
 import { IProfileData } from "../types";
 
 export interface IState {
-  spotify: ISpotifyTokens;
+  isLoggedIn: boolean;
   profile?: IProfileData;
 }
 
 export const initialState: IState = {
-  spotify: {
-    access_token: "",
-    refresh_token: "",
-  },
+  isLoggedIn: false,
   profile: undefined,
 };
 
 const reducer = (state: IState = initialState, action: IActions): IState => {
   switch (action.type) {
-    case "SET_TOKEN":
+    case "SET_LOGIN":
       return {
         ...state,
-        spotify: action.payload,
+        isLoggedIn: action.payload,
       };
     case "SET_PROFILE":
       return {
