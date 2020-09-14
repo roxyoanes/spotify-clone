@@ -1,18 +1,29 @@
 import { NextPage } from "next";
 
-import StyledAlbum from "./styles/album";
+import StyledPlaylist from "./styles/playlistsCollection";
+import { IUserPlaylists } from "./types";
 
-interface IProps {}
+interface IProps {
+  userPlaylists: IUserPlaylists;
+}
 
-const Library: NextPage<IProps> = () => {
+const Library: NextPage<IProps> = ({ userPlaylists }) => {
   return (
-    <StyledAlbum>
+    <StyledPlaylist>
       <div className="container">
-        <div className="album-main">
-          <h1>Playlists</h1>
+        <h1>Playlists</h1>
+        <div className="cards-container">
+          {userPlaylists.items.map((playlistName) => (
+            <div className="card" key={playlistName.id}>
+              <img className="card-img" src={playlistName.images[0]?.url} />
+              <div>
+                <h4 className="playlist-name">{playlistName.name}</h4>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </StyledAlbum>
+    </StyledPlaylist>
   );
 };
 
