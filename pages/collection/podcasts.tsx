@@ -8,7 +8,6 @@ import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import PodcastsCard from "../../src/YourLibrary/PodcastsCard";
-import spotifyApi from "../../src/server/spotifyApi";
 
 interface IStyledProps {
   opensidebar: boolean;
