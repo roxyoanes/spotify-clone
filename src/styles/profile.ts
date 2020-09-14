@@ -45,6 +45,7 @@ const StyledUserProfile = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
   }
   .card-title {
     margin: 20px;
