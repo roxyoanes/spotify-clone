@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import { IProfileData, IUserPlaylists } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -8,12 +8,14 @@ import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import Library from "../../src/Library";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
 }
 interface IProps {
   profileData: IProfileData;
+  userPlaylists: IUserPlaylists;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -24,10 +26,10 @@ const StyledContainer = styled.div<IStyledProps>`
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
-  background: linear-gradient(#212121, #131413);
+  background-color: #131413; /* linear-gradient(#212121, #131413); */
 `;
 
-const YourLibrary: NextPage<IProps> = ({ profileData }) => {
+const YourLibrary: NextPage<IProps> = ({ profileData, userPlaylists }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -42,7 +44,7 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
           navbarDefault={false}
           navbarDefaultScrolled={false}
         />
-        <Library />
+        <Library userPlaylists={userPlaylists} />
         <Global
           styles={css`
             html,
@@ -69,7 +71,15 @@ const YourLibrary: NextPage<IProps> = ({ profileData }) => {
 YourLibrary.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
+  const userId = store.profile.id;
+
+  const playlistsResponse = await fetch(
+    `${server}/api/get-user-playlists/${userId}`
+  );
+  const userPlaylists = await playlistsResponse.json();
+
   return {
+    ...userPlaylists,
     profileData: store.profile,
   };
 };
