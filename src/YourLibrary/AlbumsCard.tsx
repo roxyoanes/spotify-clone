@@ -4,16 +4,16 @@ import StyledAlbums from "../styles/YourLibrary/albums";
 import { IGetUserAlbums } from "../types";
 
 interface IProps {
-  savedAlbums: IGetUserAlbums;
+  savedAlbumData: IGetUserAlbums;
 }
 
-const AlbumsCard: NextPage<IProps> = ({ savedAlbums }) => {
+const AlbumsCard: NextPage<IProps> = ({ savedAlbumData }) => {
   return (
     <StyledAlbums>
       <div className="container">
         <h1 className="card-title">Albums</h1>
         <div className="albums-wrapper">
-          {savedAlbums.items.map((savedAlbum) => (
+          {savedAlbumData.items.map((savedAlbum) => (
             <div className="card" key={savedAlbum.album.id}>
               <img
                 className="album-pic"

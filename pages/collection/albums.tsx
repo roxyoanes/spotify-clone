@@ -8,15 +8,15 @@ import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import AlbumsCard from "../../src/YourLibrary/AlbumsCard";
-import spotifyApi from "../../src/server/spotifyApi";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
-  savedAlbums: IGetUserAlbums;
+  savedAlbumData: IGetUserAlbums;
 }
 interface IProps {
   profileData: IProfileData;
-  savedAlbums: IGetUserAlbums;
+  savedAlbumData: IGetUserAlbums;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -31,15 +31,15 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
 `;
 
-const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
+const Albums: NextPage<IProps> = ({ profileData, savedAlbumData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <StyledContainer opensidebar={openSidebar} savedAlbums={savedAlbums}>
+    <StyledContainer opensidebar={openSidebar} savedAlbumData={savedAlbumData}>
       <Sidebar openSidebar={openSidebar} />
       <StyledRightSideContainer
         opensidebar={openSidebar}
-        savedAlbums={savedAlbums}
+        savedAlbumData={savedAlbumData}
       >
         <Navbar
           openSidebar={openSidebar}
@@ -49,7 +49,7 @@ const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
           navbarDefault={false}
           navbarDefaultScrolled={false}
         />
-        <AlbumsCard savedAlbums={savedAlbums} />
+        <AlbumsCard savedAlbumData={savedAlbumData} />
         <Global
           styles={css`
             html,
@@ -76,11 +76,12 @@ const Albums: NextPage<IProps> = ({ profileData, savedAlbums }) => {
 Albums.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
-  const savedAlbums = await spotifyApi.getMySavedAlbums();
+  const albumResponse = await fetch(`${server}/api/album/getSavedAlbums`);
+  const savedAlbumData = await albumResponse.json();
 
   return {
     profileData: store.profile,
-    savedAlbums: savedAlbums.body,
+    ...savedAlbumData,
   };
 };
 export default withRedux(Albums);
