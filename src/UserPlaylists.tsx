@@ -2,7 +2,7 @@ import { FC } from "react";
 import { IUserPlaylists } from "./types";
 
 interface IProps {
-  userPlaylists: IUserPlaylists; //to do types
+  userPlaylists: IUserPlaylists;
 }
 
 const UserPlaylists: FC<IProps> = ({ userPlaylists }) => {
@@ -10,11 +10,7 @@ const UserPlaylists: FC<IProps> = ({ userPlaylists }) => {
     <>
       {userPlaylists.items.map((playlistName) => (
         <div className="card" key={playlistName.id}>
-          <img
-            className="card-img"
-            src={playlistName.images[0]?.url}
-            alt="category-img"
-          />
+          <img className="card-img" src={playlistName.images[0]?.url} />
           <div>
             <h4 className="playlist-name">{playlistName.name}</h4>
           </div>
