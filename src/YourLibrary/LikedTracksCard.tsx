@@ -5,7 +5,7 @@ import { IProfileData, ISavedTracks } from "../types";
 
 interface IProps {
   profileData: IProfileData;
-  savedTracks: ISavedTracks;
+  savedTracksData: ISavedTracks;
 }
 
 const convertMilliseconds = (milliseconds) => {
@@ -15,7 +15,7 @@ const convertMilliseconds = (milliseconds) => {
   return res;
 };
 
-const LikedTracksCard: NextPage<IProps> = ({ savedTracks }) => {
+const LikedTracksCard: NextPage<IProps> = ({ savedTracksData }) => {
   return (
     <StyledLikedTracks>
       <div className="button-container">
@@ -34,7 +34,7 @@ const LikedTracksCard: NextPage<IProps> = ({ savedTracks }) => {
         />
       </div>
       <div className="tracks-wrapper">
-        {savedTracks.items.map((savedTrack, i) => (
+        {savedTracksData.items.map((savedTrack, i) => (
           <div className="card" key={savedTrack.track.id}>
             <div className="card-title">
               <h6 className="song-index">{i + 1}</h6>

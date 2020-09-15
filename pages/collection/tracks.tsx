@@ -7,17 +7,17 @@ import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
-import spotifyApi from "../../src/server/spotifyApi";
 import LikedTracksCard from "../../src/YourLibrary/LikedTracksCard";
 import LikedTracksHeader from "../../src/YourLibrary/LikedTracksHeader";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
-  savedTracks: ISavedTracks;
+  savedTracksData: ISavedTracks;
 }
 interface IProps {
   profileData: IProfileData;
-  savedTracks: ISavedTracks;
+  savedTracksData: ISavedTracks;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -43,20 +43,26 @@ const StyledSecondaryBackground = styled.div<IStyledProps>`
   );
 `;
 
-const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
+const LikedTracks: NextPage<IProps> = ({ profileData, savedTracksData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <StyledContainer opensidebar={openSidebar} savedTracks={savedTracks}>
+    <StyledContainer
+      opensidebar={openSidebar}
+      savedTracksData={savedTracksData}
+    >
       <Sidebar openSidebar={openSidebar} />
       <StyledRightSideContainer
         opensidebar={openSidebar}
-        savedTracks={savedTracks}
+        savedTracksData={savedTracksData}
       >
-        <StyledBackground opensidebar={openSidebar} savedTracks={savedTracks}>
+        <StyledBackground
+          opensidebar={openSidebar}
+          savedTracksData={savedTracksData}
+        >
           <StyledSecondaryBackground
             opensidebar={openSidebar}
-            savedTracks={savedTracks}
+            savedTracksData={savedTracksData}
           >
             <Navbar
               openSidebar={openSidebar}
@@ -69,7 +75,10 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
             <LikedTracksHeader profileData={profileData} />
           </StyledSecondaryBackground>
         </StyledBackground>
-        <LikedTracksCard savedTracks={savedTracks} profileData={profileData} />
+        <LikedTracksCard
+          savedTracksData={savedTracksData}
+          profileData={profileData}
+        />
 
         <Global
           styles={css`
@@ -97,11 +106,14 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracks }) => {
 LikedTracks.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
-  const savedTracks = await spotifyApi.getMySavedTracks();
-
+  const tracksResponse = await fetch(
+    `${server}/api/savedTracks/getSavedTracks`
+  );
+  const savedTracksData = await tracksResponse.json();
+  console.log("DD", savedTracksData);
   return {
     profileData: store.profile,
-    savedTracks: savedTracks.body,
+    ...savedTracksData,
   };
 };
 export default withRedux(LikedTracks);
