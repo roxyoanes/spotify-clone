@@ -8,15 +8,15 @@ import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import ArtistsCard from "../../src/YourLibrary/ArtistsCard";
-import spotifyApi from "../../src/server/spotifyApi";
+import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
-  followedArtists: IFollowedArtists;
+  artistsData: IFollowedArtists;
 }
 interface IProps {
   profileData: IProfileData;
-  followedArtists: IFollowedArtists;
+  artistsData: IFollowedArtists;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -31,18 +31,15 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
 `;
 
-const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
+const Artists: NextPage<IProps> = ({ profileData, artistsData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
-    <StyledContainer
-      opensidebar={openSidebar}
-      followedArtists={followedArtists}
-    >
+    <StyledContainer opensidebar={openSidebar} artistsData={artistsData}>
       <Sidebar openSidebar={openSidebar} />
       <StyledRightSideContainer
         opensidebar={openSidebar}
-        followedArtists={followedArtists}
+        artistsData={artistsData}
       >
         <Navbar
           openSidebar={openSidebar}
@@ -52,7 +49,7 @@ const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
           navbarDefault={false}
           navbarDefaultScrolled={false}
         />
-        <ArtistsCard followedArtists={followedArtists} />
+        <ArtistsCard artistsData={artistsData} />
         <Global
           styles={css`
             html,
@@ -79,11 +76,11 @@ const Artists: NextPage<IProps> = ({ profileData, followedArtists }) => {
 Artists.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
-  const followedArtists = await spotifyApi.getFollowedArtists();
-
+  const artistsResponse = await fetch(`${server}/api/savedArtists/getArtists`);
+  const artistsData = await artistsResponse.json();
   return {
     profileData: store.profile,
-    followedArtists: followedArtists.body,
+    ...artistsData,
   };
 };
 export default withRedux(Artists);
