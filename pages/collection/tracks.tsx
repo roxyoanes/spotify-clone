@@ -110,7 +110,6 @@ LikedTracks.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
     `${server}/api/savedTracks/getSavedTracks`
   );
   const savedTracksData = await tracksResponse.json();
-  console.log("DD", savedTracksData);
   return {
     profileData: store.profile,
     ...savedTracksData,
