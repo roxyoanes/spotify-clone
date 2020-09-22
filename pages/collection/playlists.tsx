@@ -9,6 +9,7 @@ import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import Library from "../../src/Library";
 import { server } from "../../config";
+import toggleSongMenuHook from "../../src/toggleSongMenuHook";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -31,6 +32,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
 
 const YourLibrary: NextPage<IProps> = ({ profileData, userPlaylists }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
+  const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
 
   return (
     <StyledContainer opensidebar={openSidebar}>

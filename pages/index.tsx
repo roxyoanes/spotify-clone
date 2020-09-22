@@ -12,6 +12,8 @@ import Navbar from "../src/Navbar";
 import { IAlbum, IPlaylist, IProfileData } from "../src/types";
 import { setProfileDataAction, setLoginAction } from "../src/redux/actions";
 import toggleSidebarHook from "../src/toggleSidebarHook";
+import toggleSongMenuHook from "../src/toggleSongMenuHook";
+
 import CreatePlaylist from "../src/CreatePlaylist";
 import { server } from "../config";
 
@@ -56,6 +58,7 @@ const Home: NextPage<IProps> = ({
   const dispatch = useDispatch();
 
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
+  const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
 
   useEffect(() => {
     dispatch(setProfileDataAction(profileData));

@@ -10,6 +10,7 @@ import { Global, css } from "@emotion/core";
 import LikedTracksCard from "../../src/YourLibrary/LikedTracksCard";
 import LikedTracksHeader from "../../src/YourLibrary/LikedTracksHeader";
 import { server } from "../../config";
+import toggleSongMenuHook from "../../src/toggleSongMenuHook";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -45,6 +46,7 @@ const StyledSecondaryBackground = styled.div<IStyledProps>`
 
 const LikedTracks: NextPage<IProps> = ({ profileData, savedTracksData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
+  const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
 
   return (
     <StyledContainer
@@ -78,6 +80,8 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracksData }) => {
         <LikedTracksCard
           savedTracksData={savedTracksData}
           profileData={profileData}
+          /* openSongMenu={openSongMenu}
+          toggleSongMenu={toggleSongMenu} */
         />
 
         <Global
