@@ -90,6 +90,31 @@ const StyledLikedTracks = styled.div`
     color: #1db954;
     margin-right: 10px;
   }
+
+  .song-container {
+    margin: 40px 0;
+  }
+  .song-menu-btn {
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+  }
+  .song-menu-img {
+    width: 25px;
+  }
+  .song-menu-list {
+    position: absolute;
+    background-color: #131413;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .menu-btn {
+    background-color: transparent;
+    color: #b3b3b3;
+    padding: 10px 0;
+    font-weight: 300;
+    border: none;
+  }
 `;
 
 export default StyledLikedTracks;
