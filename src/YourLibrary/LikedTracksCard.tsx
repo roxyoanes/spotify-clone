@@ -2,18 +2,12 @@ import { NextPage } from "next";
 
 import StyledLikedTracks from "../styles/YourLibrary/likedTracks";
 import { IProfileData, ISavedTracks } from "../types";
+import SavedTrack from "../../src/YourLibrary/SavedTrack";
 
 interface IProps {
   profileData: IProfileData;
   savedTracksData: ISavedTracks;
 }
-
-const convertMilliseconds = (milliseconds) => {
-  const min = Math.floor((milliseconds / 1000 / 60) << 0);
-  const sec = Math.floor((milliseconds / 1000) % 60);
-  const res = min + ":" + sec;
-  return res;
-};
 
 const LikedTracksCard: NextPage<IProps> = ({ savedTracksData }) => {
   return (
@@ -35,45 +29,14 @@ const LikedTracksCard: NextPage<IProps> = ({ savedTracksData }) => {
       </div>
       <div className="tracks-wrapper">
         {savedTracksData.items.map((savedTrack, i) => (
-          <div className="card" key={savedTrack.track.id}>
-            <div className="card-title">
-              <h6 className="song-index">{i + 1}</h6>
-              <img
-                className="tracks-pic"
-                src={savedTrack.track.album.images[0].url}
-                alt="tracks-pic"
-              />
-              <div className="text-card">
-                <p className="song-name" key={savedTrack.track.id}>
-                  {savedTrack.track.name}
-                </p>
-                <div className="artists-container">
-                  {savedTrack.track.album.artists.map((artist) => (
-                    <p className="artist-name" key={artist.id}>
-                      {artist.name}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <p className="info-artist" key={savedTrack.track.album.id}>
-              {savedTrack.track.album.name}
-            </p>
-            <p className="info-artist" key={savedTrack.track.album.id}>
-              {savedTrack.added_at}
-            </p>
-            <div className="song-duration-wrapper">
-              <img
-                className="heart-icon"
-                src="/heart-solid.svg"
-                alt="heart-icon"
-              />
-              <p className="info-artist" key={savedTrack.track.album.id}>
-                {convertMilliseconds(savedTrack.track.duration_ms)}
-              </p>
-            </div>
-          </div>
+          <>
+            {console.log("sss", savedTrack)}
+            <SavedTrack
+              key={savedTrack.track.id}
+              savedTrack={savedTrack}
+              index={i}
+            />
+          </>
         ))}
       </div>
     </StyledLikedTracks>
