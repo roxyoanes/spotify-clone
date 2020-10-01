@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 
-const StyledLikedTracks = styled.div`
+interface IProps {
+  hoverButton: boolean;
+}
+const StyledLikedTracks = styled.div<IProps>`
   color: white;
   background-color: #131413;
 
@@ -40,6 +43,13 @@ const StyledLikedTracks = styled.div`
     display: grid;
     grid-template-columns: 4fr repeat(2, 2fr) 1fr;
     align-items: center;
+
+    &:hover {
+      background-color: hsla(0, 0%, 100%, 0.1);
+    }
+    /*    &:active {
+      background-color: hsla(0, 0%, 100%, 0.5);
+    } */
   }
   .card-title {
     font-size: 65px;
@@ -94,6 +104,9 @@ const StyledLikedTracks = styled.div`
   .song-container {
     margin: 40px 0;
   }
+  /* .menu-container {
+    display: none;
+  } */
   .song-menu-btn {
     background-color: transparent;
     border: none;
@@ -102,11 +115,13 @@ const StyledLikedTracks = styled.div`
   .song-menu-img {
     width: 25px;
   }
+
   .song-menu-list {
     position: absolute;
-    background-color: #131413;
+    background-color: #282828;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 5px;
+    right: 55px;
   }
   .menu-btn {
     background-color: transparent;

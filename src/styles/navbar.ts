@@ -63,9 +63,9 @@ const StyledNavbar = styled.div<IProps>`
     margin-top: 5px;
     transition: height 0.3s;
     position: absolute;
-    background-color: #333;
+    background-color: #282828;
     padding: 5px 90px 12px 5px;
-    border-radius: 8px;
+    border-radius: 5px;
   }
   .user-menu {
     display: flex;
