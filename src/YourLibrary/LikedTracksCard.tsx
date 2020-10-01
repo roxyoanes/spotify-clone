@@ -30,11 +30,11 @@ const LikedTracksCard: NextPage<IProps> = ({ savedTracksData }) => {
       <div className="tracks-wrapper">
         {savedTracksData.items.map((savedTrack, i) => (
           <>
-            {console.log("sss", savedTrack)}
             <SavedTrack
               key={savedTrack.track.id}
               savedTrack={savedTrack}
               index={i}
+              hoverButton={true}
             />
           </>
         ))}

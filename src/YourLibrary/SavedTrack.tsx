@@ -10,6 +10,7 @@ interface IProps {
   toggleSongMenu: (e: any) => void;
   openSongMenu: boolean;
   index: number;
+  hoverButton: boolean;
 }
 
 const convertMilliseconds = (milliseconds) => {
@@ -19,11 +20,11 @@ const convertMilliseconds = (milliseconds) => {
   return res;
 };
 
-const SavedTrack: NextPage<IProps> = ({ savedTrack, index }) => {
+const SavedTrack: NextPage<IProps> = ({ savedTrack, index, hoverButton }) => {
   const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
   console.log("xx", savedTrack);
   return (
-    <StyledLikedTracks>
+    <StyledLikedTracks hoverButton={hoverButton}>
       <div className="card" key={savedTrack.track.id}>
         <div className="card-title">
           <h6 className="song-index">{index + 1}</h6>
@@ -57,18 +58,22 @@ const SavedTrack: NextPage<IProps> = ({ savedTrack, index }) => {
           <p className="info-artist" key={savedTrack.track.album.id}>
             {convertMilliseconds(savedTrack.track.duration_ms)}
           </p>
+
           <div className="song-menu-container">
-            <button
-              className="song-menu-btn"
-              onClick={() => toggleSongMenu(index + 1)}
-              {...console.log("ddda", index + 1)}
-            >
-              <img
-                className="song-menu-img"
-                src="/ellipsis-h-solid.svg"
-                alt="play-icon"
-              ></img>
-            </button>
+            {hoverButton && (
+              <div className="menu-container">
+                <button
+                  className="song-menu-btn"
+                  onClick={() => toggleSongMenu(index + 1)}
+                >
+                  <img
+                    className="song-menu-img"
+                    src="/ellipsis-h-solid.svg"
+                    alt="play-icon"
+                  ></img>
+                </button>
+              </div>
+            )}
             {openSongMenu ? (
               <div className="song-menu-list">
                 <div
@@ -81,9 +86,13 @@ const SavedTrack: NextPage<IProps> = ({ savedTrack, index }) => {
                   }}
                 >
                   <button className="menu-btn">Start Radio</button>
-                  <button className="menu-btn">Make secret</button>
-                  <button className="menu-btn">Delete</button>
-                  <button className="menu-btn">Copy Playlist link</button>
+                  <button className="menu-btn">
+                    Remove from your Liked Songs
+                  </button>
+                  <button className="menu-btn">Add to Queue</button>
+                  <button className="menu-btn">Add to Playlist</button>
+                  <button className="menu-btn">Show credits</button>
+                  <button className="menu-btn">Copy Song Link</button>
                   <button className="menu-btn">Open in Desktop app</button>
                 </div>
               </div>

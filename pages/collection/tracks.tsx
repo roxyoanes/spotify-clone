@@ -80,8 +80,6 @@ const LikedTracks: NextPage<IProps> = ({ profileData, savedTracksData }) => {
         <LikedTracksCard
           savedTracksData={savedTracksData}
           profileData={profileData}
-          /* openSongMenu={openSongMenu}
-          toggleSongMenu={toggleSongMenu} */
         />
 
         <Global
