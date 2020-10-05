@@ -34,6 +34,13 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
 const PlaylistId: NextPage<IProps> = ({ profileData, playlistData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
+  const convertMilliseconds = (milliseconds) => {
+    const min = Math.floor((milliseconds / 1000 / 60) << 0);
+    const sec = Math.floor((milliseconds / 1000) % 60);
+    const res = min + ":" + sec;
+    return res;
+  };
+
   return (
     <StyledContainer opensidebar={openSidebar}>
       <Sidebar openSidebar={openSidebar} />
@@ -45,7 +52,10 @@ const PlaylistId: NextPage<IProps> = ({ profileData, playlistData }) => {
           navbarDefault={true}
           navbarDefaultScrolled={true}
         />
-        <Playlist playlist={playlistData} />
+        <Playlist
+          playlist={playlistData}
+          convertMilliseconds={convertMilliseconds}
+        />
         <Global
           styles={css`
             html,
