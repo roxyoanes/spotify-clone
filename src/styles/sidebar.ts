@@ -15,6 +15,7 @@ const StyledSidebar = styled.div<IProps>`
   }
   .main-container {
     padding: 20px;
+    background-color: black;
   }
 
   .logo {
