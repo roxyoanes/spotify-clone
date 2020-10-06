@@ -104,9 +104,7 @@ const StyledLikedTracks = styled.div<IProps>`
   .song-container {
     margin: 40px 0;
   }
-  /* .menu-container {
-    display: none;
-  } */
+
   .song-menu-btn {
     background-color: transparent;
     border: none;
