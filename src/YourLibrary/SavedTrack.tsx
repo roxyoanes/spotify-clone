@@ -22,7 +22,6 @@ const convertMilliseconds = (milliseconds) => {
 
 const SavedTrack: NextPage<IProps> = ({ savedTrack, index, hoverButton }) => {
   const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
-  console.log("xx", savedTrack);
   return (
     <StyledLikedTracks hoverButton={hoverButton}>
       <div className="card" key={savedTrack.track.id}>
