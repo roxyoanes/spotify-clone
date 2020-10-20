@@ -68,7 +68,7 @@ const StyledPlaylist = styled.div`
     color: #b3b3b3;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
     display: grid;
-    grid-template-columns: 4fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 0.5fr;
     align-items: center;
   }
 
@@ -79,7 +79,7 @@ const StyledPlaylist = styled.div`
     border-radius: 15px;
     cursor: pointer;
     display: grid;
-    grid-template-columns: 4fr 2fr 1fr;
+    grid-template-columns: 3fr 2fr 0.5fr;
     align-items: center;
 
     &:hover {
