@@ -14,7 +14,7 @@ interface IStyledProps {
   opensidebar: boolean;
 }
 interface IProps {
-  artistAlbumData: IUserPlaylists;
+  artistData: IUserPlaylists;
   profileData: IProfileData;
 }
 
@@ -31,7 +31,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const ArtistId: NextPage<IProps> = ({ profileData, artistAlbumData }) => {
+const ArtistId: NextPage<IProps> = ({ profileData, artistData }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   const convertMilliseconds = (milliseconds) => {
@@ -53,7 +53,7 @@ const ArtistId: NextPage<IProps> = ({ profileData, artistAlbumData }) => {
           navbarDefaultScrolled={true}
         />
         <ArtistAlbum
-          artistAlbumData={artistAlbumData}
+          artistData={artistData}
           convertMilliseconds={convertMilliseconds}
         />
         <Global
@@ -92,10 +92,10 @@ ArtistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const playlistResponse = await fetch(
     `${server}/api/artistsAlbums/${artistId}`
   );
-  const artistAlbumData = await playlistResponse.json();
+  const artistData = await playlistResponse.json();
   return {
     profileData: store.profile,
-    ...artistAlbumData,
+    ...artistData,
   };
 };
 export default withRedux(ArtistId);

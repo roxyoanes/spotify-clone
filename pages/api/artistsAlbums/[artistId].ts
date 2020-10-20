@@ -13,12 +13,10 @@ const handler = async (req, res) => {
     const spotifyApi = initializeSpotifyApi(token);
 
     try {
-      const artistAlbumData = await spotifyApi.getArtistAlbums(artistId, {
-        limit: 10,
-      });
+      const artistData = await spotifyApi.getArtist(artistId);
 
       res.json({
-        artistAlbumData: artistAlbumData.body,
+        artistData: artistData.body,
       });
     } catch (err) {
       res.send(err);
