@@ -6,7 +6,7 @@ const StyledFollowedArtists = styled.div`
 
   .artists-wrapper {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     grid-gap: 30px;
     margin: 0 20px;
@@ -17,16 +17,23 @@ const StyledFollowedArtists = styled.div`
     font-size: 24px;
   }
   .card {
-    background-color: #212121;
-    border-radius: 15px;
-    padding: 15px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 12px;
+    padding: 15px 0;
     cursor: pointer;
+    background-color: #191919;
+
+    &:hover {
+      background-color: #212121;
+    }
   }
+
   .artist-pic {
-    height: 125px;
+    height: 180px;
+    border-radius: 50%;
+    width: 180px;
   }
   .text-card {
     margin-top: 14px;
