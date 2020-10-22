@@ -76,8 +76,11 @@ const Artists: NextPage<IProps> = ({ profileData, artistsData }) => {
 Artists.getInitialProps = async ({ reduxStore }: IReduxStoreProps) => {
   const store = reduxStore.getState();
 
-  const artistsResponse = await fetch(`${server}/api/savedArtists/getArtists`);
+  const artistsResponse = await fetch(
+    `${server}/api/savedArtists/getFollowedArtists`
+  );
   const artistsData = await artistsResponse.json();
+
   return {
     profileData: store.profile,
     ...artistsData,
