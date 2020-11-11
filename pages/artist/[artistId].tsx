@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 
-import { IProfileData, IUserPlaylists } from "../../src/types";
+import { IProfileData } from "../../src/types";
 import { NextPage } from "next";
-import ArtistAlbum from "../../src/YourLibrary/ArtistAlbum";
+import ArtistInfo from "../../src/YourLibrary/ArtistInfo";
+import PopularTracks from "../../src/YourLibrary/PopularTracks";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
@@ -12,9 +13,10 @@ import { server } from "../../config";
 
 interface IStyledProps {
   opensidebar: boolean;
+  artistInfo: any; //change this
 }
 interface IProps {
-  artistData: IUserPlaylists;
+  artistInfo: any; //change this
   profileData: IProfileData;
 }
 
@@ -29,9 +31,12 @@ const StyledContainer = styled.div<IStyledProps>`
 const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
   background: linear-gradient(#212121, #131413);
+  /* background-image: url(${({ artistInfo }) => artistInfo}); */
+  /*   background-position: center center;
+  background-repeat: no-repeat; */
 `;
 
-const ArtistId: NextPage<IProps> = ({ profileData, artistData }) => {
+const ArtistId: NextPage<IProps> = ({ profileData, artistInfo }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   const convertMilliseconds = (milliseconds) => {
@@ -44,7 +49,10 @@ const ArtistId: NextPage<IProps> = ({ profileData, artistData }) => {
   return (
     <StyledContainer opensidebar={openSidebar}>
       <Sidebar openSidebar={openSidebar} />
-      <StyledRightSideContainer opensidebar={openSidebar}>
+      <StyledRightSideContainer
+        artistInfo={artistInfo.images[0].url}
+        opensidebar={openSidebar}
+      >
         <Navbar
           openSidebar={openSidebar}
           toggleSidebar={toggleSidebar}
@@ -52,10 +60,11 @@ const ArtistId: NextPage<IProps> = ({ profileData, artistData }) => {
           navbarDefault={true}
           navbarDefaultScrolled={true}
         />
-        <ArtistAlbum
-          artistData={artistData}
+        <ArtistInfo
+          artistInfo={artistInfo}
           convertMilliseconds={convertMilliseconds}
         />
+        <PopularTracks />
         <Global
           styles={css`
             html,
@@ -89,13 +98,12 @@ ArtistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const store = reduxStore.getState();
   const { artistId } = query;
 
-  const playlistResponse = await fetch(
-    `${server}/api/artistsAlbums/${artistId}`
-  );
-  const artistData = await playlistResponse.json();
+  const artistResponse = await fetch(`${server}/api/savedArtists/${artistId}`);
+  const artistInfo = await artistResponse.json();
+
   return {
     profileData: store.profile,
-    ...artistData,
+    ...artistInfo,
   };
 };
 export default withRedux(ArtistId);
