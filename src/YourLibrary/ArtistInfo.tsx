@@ -10,15 +10,15 @@ const ArtistInfo: FC<IProps> = ({ artistInfo }) => {
 
   return (
     <StyledArtistInfo>
-      <div className="card">
-        <div className="artist-header">
-          <img
-            src={artistInfo.images[0].url}
-            className="artist-pic"
-            alt="artist-picture"
-          />
+      <div className="artist-header">
+        <img
+          src={artistInfo.images[0].url}
+          alt="artist-pic"
+          className="img-artist"
+        />
+        <div className="text-card">
           <p>Verified Artist</p>
-          <h4>{artistInfo.name}</h4>
+          <h4 className="artist-name">{artistInfo.name}</h4>
         </div>
       </div>
     </StyledArtistInfo>
