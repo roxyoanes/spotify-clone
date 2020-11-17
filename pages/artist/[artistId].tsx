@@ -36,7 +36,7 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background-repeat: no-repeat; */
 `;
 
-const ArtistId: NextPage<IProps> = ({ profileData, artistInfo }) => {
+const ArtistId: NextPage<IProps> = ({ profileData, artistInfo, artistTracks }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   const convertMilliseconds = (milliseconds) => {
@@ -64,7 +64,7 @@ const ArtistId: NextPage<IProps> = ({ profileData, artistInfo }) => {
           artistInfo={artistInfo}
           convertMilliseconds={convertMilliseconds}
         />
-        <PopularTracks />
+        <PopularTracks artistTracks={artistTracks} />
         <Global
           styles={css`
             html,
@@ -101,9 +101,14 @@ ArtistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const artistResponse = await fetch(`${server}/api/savedArtists/${artistId}`);
   const artistInfo = await artistResponse.json();
 
+  
+  const artistData = await fetch(`${server}/api/get-top-tracks/${artistId}`);
+  const artistTracks = await artistData.json();
+
   return {
     profileData: store.profile,
     ...artistInfo,
+    ...artistTracks,
   };
 };
 export default withRedux(ArtistId);
