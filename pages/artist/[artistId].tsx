@@ -31,12 +31,13 @@ const StyledContainer = styled.div<IStyledProps>`
 const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
   background: linear-gradient(#212121, #131413);
-  /* background-image: url(${({ artistInfo }) => artistInfo}); */
-  /*   background-position: center center;
-  background-repeat: no-repeat; */
 `;
 
-const ArtistId: NextPage<IProps> = ({ profileData, artistInfo, artistTracks }) => {
+const ArtistId: NextPage<IProps> = ({
+  profileData,
+  artistInfo,
+  artistTracks,
+}) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   const convertMilliseconds = (milliseconds) => {
@@ -101,7 +102,6 @@ ArtistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const artistResponse = await fetch(`${server}/api/savedArtists/${artistId}`);
   const artistInfo = await artistResponse.json();
 
-  
   const artistData = await fetch(`${server}/api/get-top-tracks/${artistId}`);
   const artistTracks = await artistData.json();
 
