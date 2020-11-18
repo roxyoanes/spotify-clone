@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 const StyledArtistInfo = styled.div`
   color: white;
   padding: 20px 30px;
-  margin: 0 40px;
 
   p {
     font-size: 20px;
