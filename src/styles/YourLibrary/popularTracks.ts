@@ -72,7 +72,7 @@ const StyledPopularTracks = styled.div`
     font-weight: 200;
   }
   .song-image {
-    height: 40px;
+    height: 70px;
   }
 
   .name {
