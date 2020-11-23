@@ -2,13 +2,14 @@ import styled from "@emotion/styled";
 
 const StyledPopularTracks = styled.div`
   color: white;
-  padding: 20px 30px;
 
   p {
     font-size: 20px;
     margin: 0;
   }
-
+  .popular-tracks-card {
+    padding: 0 30px;
+  }
   .buttons-container {
     display: flex;
     align-items: center;
@@ -47,11 +48,14 @@ const StyledPopularTracks = styled.div`
     font-weight: 300;
     border: none;
   }
+  .title {
+    padding: 20px 0;
+  }
   .song-container {
     border-radius: 15px;
     cursor: pointer;
     display: grid;
-    grid-template-columns: 6fr 2fr;
+    grid-template-columns: 6fr 1fr;
     align-items: center;
 
     &:hover {
@@ -65,29 +69,36 @@ const StyledPopularTracks = styled.div`
     align-items: center;
   }
   .song-index {
-    font-size: 16px;
+    font-size: 18px;
     color: #b3b3b3;
-    margin: 0;
+    margin: 0 10px;
     padding-right: 20px;
     font-weight: 200;
   }
   .song-image {
-    height: 70px;
+    height: 50px;
   }
 
   .name {
-    font-size: 14px;
-    margin: 10px 0;
-    color: #b3b3b3;
+    font-size: 16px;
+    margin: 10px 20px;
+    font-weight: 200;
   }
   .song-duration-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   .heart-icon {
     height: 20px;
     color: #1db954;
     margin-right: 10px;
+  }
+
+  .info-artist {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #b3b3b3;
   }
 
   .song-menu-img {
