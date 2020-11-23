@@ -2,8 +2,8 @@ import { NextPage } from "next";
 import { IGetPlaylist } from "./types";
 
 import StyledPlaylist from "./styles/playlist";
-import { useState } from "react";
 import toggleSongMenuHook from "./toggleSongMenuHook";
+import togglePlaylistMenuHook from "./togglePlaylistMenuHooks";
 import PlaylistSong from "./PlaylistSong";
 
 interface IProps {
@@ -11,12 +11,8 @@ interface IProps {
 }
 
 const Playlist: NextPage<IProps> = ({ playlist, convertMilliseconds }) => {
-  const [openPlaylistMenu, setOpenPlaylistMenu] = useState(false);
   const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
-
-  const togglePlaylistMenu = () => {
-    setOpenPlaylistMenu(!openPlaylistMenu);
-  };
+  const { openPlaylistMenu, togglePlaylistMenu } = togglePlaylistMenuHook();
 
   return (
     <StyledPlaylist>
