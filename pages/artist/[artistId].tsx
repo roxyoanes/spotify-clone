@@ -18,6 +18,7 @@ interface IStyledProps {
 interface IProps {
   artistInfo: any; //change this
   profileData: IProfileData;
+  artistTracks: any; //change
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -31,6 +32,11 @@ const StyledContainer = styled.div<IStyledProps>`
 const StyledRightSideContainer = styled.div<IStyledProps>`
   display: grid;
   background: linear-gradient(#212121, #131413);
+`;
+
+const StyledPopularTracksContainer = styled.div<IStyledProps>`
+  color: white;
+  padding: 20px 30px;
 `;
 
 const ArtistId: NextPage<IProps> = ({
@@ -61,11 +67,13 @@ const ArtistId: NextPage<IProps> = ({
           navbarDefault={true}
           navbarDefaultScrolled={true}
         />
-        <ArtistInfo
-          artistInfo={artistInfo}
-          convertMilliseconds={convertMilliseconds}
-        />
-        <PopularTracks artistTracks={artistTracks} />
+        <StyledPopularTracksContainer>
+          <ArtistInfo
+            artistInfo={artistInfo}
+            convertMilliseconds={convertMilliseconds}
+          />
+          <PopularTracks artistTracks={artistTracks} />
+        </StyledPopularTracksContainer>
         <Global
           styles={css`
             html,
