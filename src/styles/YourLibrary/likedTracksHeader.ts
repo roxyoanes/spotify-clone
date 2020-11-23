@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
 const StyledLikedTracksHeader = styled.div`
-  color: white;
-
   .wrapper-header {
     display: flex;
     align-items: center;
