@@ -10,6 +10,7 @@ import Navbar from "../../src/Navbar";
 import { IReduxStoreProps, withRedux } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import { server } from "../../config";
+import ArtistAlbums from "../../src/YourLibrary/ArtistAlbums";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -19,6 +20,7 @@ interface IProps {
   artistInfo: any; //change this
   profileData: IProfileData;
   artistTracks: any; //change
+  artistAlbums: any; //change
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -43,6 +45,7 @@ const ArtistId: NextPage<IProps> = ({
   profileData,
   artistInfo,
   artistTracks,
+  artistAlbums,
 }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
@@ -73,6 +76,7 @@ const ArtistId: NextPage<IProps> = ({
             convertMilliseconds={convertMilliseconds}
           />
           <PopularTracks artistTracks={artistTracks} />
+          <ArtistAlbums artistAlbums={artistAlbums} />
         </StyledPopularTracksContainer>
         <Global
           styles={css`
@@ -113,10 +117,16 @@ ArtistId.getInitialProps = async ({ query, reduxStore }: IServerProps) => {
   const artistData = await fetch(`${server}/api/get-top-tracks/${artistId}`);
   const artistTracks = await artistData.json();
 
+  const artistAlbumData = await fetch(
+    `${server}/api/get-artist-albums/${artistId}`
+  );
+  const artistAlbums = await artistAlbumData.json();
+
   return {
     profileData: store.profile,
     ...artistInfo,
     ...artistTracks,
+    ...artistAlbums,
   };
 };
 export default withRedux(ArtistId);
