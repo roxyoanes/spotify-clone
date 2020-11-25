@@ -6,8 +6,6 @@ interface IProps {
 }
 
 const ArtistInfo: FC<IProps> = ({ artistInfo }) => {
-  console.log("ff", artistInfo);
-
   return (
     <StyledArtistInfo>
       <div className="artist-header">
