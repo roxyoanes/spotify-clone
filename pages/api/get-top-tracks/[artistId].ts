@@ -13,7 +13,7 @@ const handler = async (req, res) => {
     const spotifyApi = initializeSpotifyApi(token);
 
     try {
-      const artistTracks = await spotifyApi.getArtistTopTracks(artistId, 'GB');
+      const artistTracks = await spotifyApi.getArtistTopTracks(artistId, "GB");
       res.json({
         artistTracks: artistTracks.body.tracks,
       });
