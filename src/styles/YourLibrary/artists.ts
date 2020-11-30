@@ -37,6 +37,7 @@ const StyledFollowedArtists = styled.div`
   }
   .text-card {
     margin-top: 14px;
+    text-align: center;
   }
   .name {
     font-size: 14px;
