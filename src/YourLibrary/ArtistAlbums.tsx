@@ -6,8 +6,6 @@ interface IProps {
 }
 
 const ArtistAlbums: FC<IProps> = ({ artistAlbums }) => {
-  console.log("gg", artistAlbums);
-
   return (
     <StyledArtistAlbums>
       <div className="artist-album-container">
@@ -20,9 +18,14 @@ const ArtistAlbums: FC<IProps> = ({ artistAlbums }) => {
                 alt="artist-album-img"
                 className="album-img"
               />
+
               <h3>{obj.name}</h3>
-              <h5>{obj.release_date}</h5>
-              <h5>{obj.type}</h5>
+              <div className="card-text">
+                <h5>{obj.release_date.slice(0, 4)}</h5>
+                <span className="type">
+                  <h5>{obj.type}</h5>
+                </span>
+              </div>
             </div>
           ))}
         </div>
