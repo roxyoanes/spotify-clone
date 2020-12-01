@@ -9,6 +9,8 @@ import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
 import Album from "../../src/Album";
 import { server } from "../../config";
+import React from "react";
+import AlbumTracksCard from "../../src/YourLibrary/AlbumTracksCard";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -16,6 +18,7 @@ interface IStyledProps {
 interface IProps {
   profileData: IProfileData;
   albumData: IGetAlbum;
+  albumTracksData: any; //change
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -31,7 +34,11 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
-const AlbumId: NextPage<IProps> = ({ profileData, albumData }) => {
+const AlbumId: NextPage<IProps> = ({
+  profileData,
+  albumData,
+  albumTracksData,
+}) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
 
   return (
@@ -46,6 +53,7 @@ const AlbumId: NextPage<IProps> = ({ profileData, albumData }) => {
           navbarDefaultScrolled={true}
         />
         <Album albumData={albumData} />
+        <AlbumTracksCard albumTracksData={albumTracksData} />
         <Global
           styles={css`
             html,
@@ -76,9 +84,15 @@ AlbumId.getInitialProps = async ({ query, reduxStore }: IReduxStoreProps) => {
   const albumResponse = await fetch(`${server}/api/album/${albumId}`);
   const albumData = await albumResponse.json();
 
+  const albumTracksResponse = await fetch(
+    `${server}/api/get-album-tracks/${albumId}`
+  );
+  const albumTracksData = await albumTracksResponse.json();
+
   return {
     profileData: store.profile,
     ...albumData,
+    ...albumTracksData,
   };
 };
 export default withRedux(AlbumId);
