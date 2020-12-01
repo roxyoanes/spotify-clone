@@ -7,8 +7,8 @@ import Sidebar from "../../src/Sidebar";
 import Navbar from "../../src/Navbar";
 import { withRedux, IReduxStoreProps } from "../../src/redux/redux";
 import { Global, css } from "@emotion/core";
-import AlbumsCard from "../../src/YourLibrary/AlbumsCard";
 import { server } from "../../config";
+import UserAlbums from "../../src/YourLibrary/UserAlbums";
 
 interface IStyledProps {
   opensidebar: boolean;
@@ -49,7 +49,7 @@ const Albums: NextPage<IProps> = ({ profileData, savedAlbumData }) => {
           navbarDefault={false}
           navbarDefaultScrolled={false}
         />
-        <AlbumsCard savedAlbumData={savedAlbumData} />
+        <UserAlbums savedAlbumData={savedAlbumData} />
         <Global
           styles={css`
             html,
