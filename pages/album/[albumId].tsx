@@ -34,6 +34,11 @@ const StyledRightSideContainer = styled.div<IStyledProps>`
   background: linear-gradient(#212121, #131413);
 `;
 
+const StyledAlbumTracksContainer = styled.div<IStyledProps>`
+  color: white;
+  padding: 20px 30px;
+`;
+
 const AlbumId: NextPage<IProps> = ({
   profileData,
   albumData,
@@ -52,8 +57,11 @@ const AlbumId: NextPage<IProps> = ({
           navbarDefault={true}
           navbarDefaultScrolled={true}
         />
-        <Album albumData={albumData} />
-        <AlbumTracksCard albumTracksData={albumTracksData} />
+        <StyledAlbumTracksContainer>
+          <Album albumData={albumData} />
+          <AlbumTracksCard albumTracksData={albumTracksData} />
+        </StyledAlbumTracksContainer>
+
         <Global
           styles={css`
             html,
