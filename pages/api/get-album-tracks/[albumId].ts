@@ -13,7 +13,9 @@ const handler = async (req, res) => {
     const spotifyApi = initializeSpotifyApi(token);
 
     try {
-      const albumTracksData = await spotifyApi.getAlbumTracks(albumId);
+      const albumTracksData = await spotifyApi.getAlbumTracks(albumId, {
+        limit: 15,
+      });
 
       res.json({
         albumTracksData: albumTracksData.body,
