@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 
 const StyledAlbum = styled.div`
   color: white;
-  padding: 20px 30px;
-  margin: 0 40px;
 
   .album-main {
     display: flex;
@@ -26,9 +24,9 @@ const StyledAlbum = styled.div`
     margin: 0;
   }
   .info-artist {
-    color: #b3b3b3;
     font-size: 14px;
     margin: 10px 0;
+    font-weight: 600;
   }
 `;
 
