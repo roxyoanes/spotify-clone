@@ -7,7 +7,7 @@ import toggleSongMenuHook from "./../src/toggleSongMenuHook";
 interface IProps {
   profileData: IProfileData;
   savedTracksData: ISavedTracks;
-  toggleSongMenu: (e: any) => void;
+  toggleSongMenu: (e: boolean) => void;
   openSongMenu: boolean;
   index: number;
   hoverButton: boolean;

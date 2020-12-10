@@ -3,7 +3,7 @@ import StyledPopularTracks from "../styles/YourLibrary/popularTracks";
 import toggleSongMenuHook from "../../src/toggleSongMenuHook";
 
 interface IProps {
-  toggleSongMenu: (e: any) => void;
+  toggleSongMenu: (e: boolean) => void;
   openSongMenu: boolean;
   index: number;
   track: any; //change

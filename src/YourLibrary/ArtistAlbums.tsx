@@ -1,8 +1,9 @@
 import { FC } from "react";
 import StyledArtistAlbums from "../styles/YourLibrary/artistAlbums";
+import { IAlbum } from "../types";
 
 interface IProps {
-  artistAlbums: any; //change this
+  artistAlbums: IAlbum;
 }
 
 const ArtistAlbums: FC<IProps> = ({ artistAlbums }) => {

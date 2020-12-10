@@ -4,16 +4,15 @@ import StyledAlbumTracks from "../styles/YourLibrary/albumTracks";
 import togglePlaylistMenuHook from "../togglePlaylistMenuHooks";
 import AlbumTrackCard from "../YourLibrary/AlbumTrackCard";
 
-import Link from "next/link";
+import { IUserPlaylists } from "../types";
 
-import { IGetUserAlbums } from "../types";
-
-interface IProps {}
+interface IProps {
+  albumTracksData: IUserPlaylists;
+}
 
 const AlbumTracksCard: NextPage<IProps> = ({ albumTracksData }) => {
   const { openPlaylistMenu, togglePlaylistMenu } = togglePlaylistMenuHook();
 
-  console.log("pp", albumTracksData);
   return (
     <StyledAlbumTracks>
       <div className="container">

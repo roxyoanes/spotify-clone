@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { IProfileData, IGetAlbum } from "../../src/types";
+import { IProfileData, IGetAlbum, IUserPlaylists } from "../../src/types";
 import { NextPage } from "next";
 import toggleSidebarHook from "../../src/toggleSidebarHook";
 import Sidebar from "../../src/Sidebar";
@@ -18,7 +18,7 @@ interface IStyledProps {
 interface IProps {
   profileData: IProfileData;
   albumData: IGetAlbum;
-  albumTracksData: any; //change
+  albumTracksData: IUserPlaylists;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -29,8 +29,6 @@ const StyledContainer = styled.div<IStyledProps>`
 `;
 
 const StyledRightSideContainer = styled.div<IStyledProps>`
-  /*   display: grid;
- */
   background: linear-gradient(#212121, #131413);
 `;
 

@@ -3,7 +3,7 @@ import StyledAlbumTracks from "../styles/YourLibrary/albumTracks";
 import toggleSongMenuHook from "../../src/toggleSongMenuHook";
 
 interface IProps {
-  toggleSongMenu: (e: any) => void;
+  toggleSongMenu: (e: boolean) => void;
   openSongMenu: boolean;
   index: number;
   track: any; //change
@@ -23,8 +23,10 @@ const AlbumTrackCard: FC<IProps> = ({ track, index }) => {
       <div key={track.id} className="song-container">
         <div className="card-title">
           <h6 className="song-index">{index + 1}</h6>
-          <h5 className="name">{track.name}</h5>
-          <h5 className="name">{track.artists[0].name}</h5>
+          <div className="song-wrapper">
+            <h5 className="song-name">{track.name}</h5>
+            <h5 className="name">{track.artists[0].name}</h5>
+          </div>
         </div>
 
         <div className="song-duration-wrapper">

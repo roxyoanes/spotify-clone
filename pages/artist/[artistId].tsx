@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 
-import { IProfileData } from "../../src/types";
+import {
+  IAlbum,
+  IArtistInfo,
+  IGetUserAlbums,
+  IProfileData,
+  IRelatedTracks,
+} from "../../src/types";
 import { NextPage } from "next";
 import ArtistInfo from "../../src/YourLibrary/ArtistInfo";
 import PopularTracks from "../../src/YourLibrary/PopularTracks";
@@ -15,14 +21,14 @@ import RelatedArtists from "../../src/YourLibrary/RelatedArtists";
 
 interface IStyledProps {
   opensidebar: boolean;
-  artistInfo: any; //change this
+  artistInfo: IArtistInfo;
 }
 interface IProps {
-  artistInfo: any; //change this
+  artistInfo: IArtistInfo;
   profileData: IProfileData;
   artistTracks: any; //change
-  artistAlbums: any; //change
-  relatedArtists: any; //change
+  artistAlbums: IAlbum;
+  relatedArtists: IRelatedTracks;
 }
 
 const StyledContainer = styled.div<IStyledProps>`
@@ -51,6 +57,7 @@ const ArtistId: NextPage<IProps> = ({
   relatedArtists,
 }) => {
   const { toggleSidebar, openSidebar } = toggleSidebarHook();
+  console.log("ddd", artistTracks);
 
   const convertMilliseconds = (milliseconds) => {
     const min = Math.floor((milliseconds / 1000 / 60) << 0);

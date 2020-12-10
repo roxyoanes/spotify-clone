@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const toggleSongMenuHook = (): {
   openSongMenu: boolean;
-  toggleSongMenu: (e: any) => void;
+  toggleSongMenu: (e: boolean) => void;
 } => {
   const [openSongMenu, setOpenSongMenu] = useState(false);
   const [number, setNumber] = useState(0);

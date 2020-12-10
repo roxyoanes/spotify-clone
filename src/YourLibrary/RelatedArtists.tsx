@@ -1,12 +1,12 @@
 import { FC } from "react";
 import StyledRelatedArtists from "../styles/YourLibrary/relatedArtists";
+import { IRelatedTracks } from "../types";
 
 interface IProps {
-  relatedArtists: any; //change this
+  relatedArtists: IRelatedTracks;
 }
 
 const RelatedArtists: FC<IProps> = ({ relatedArtists }) => {
-  console.log("sbbb", relatedArtists);
   return (
     <StyledRelatedArtists>
       <div className="related-artists-container">
