@@ -2,11 +2,12 @@ import { FC } from "react";
 import StyledPopularTracks from "../styles/YourLibrary/popularTracks";
 import PopularTrackCard from "./PopularTrackCard";
 import togglePlaylistMenuHook from "../togglePlaylistMenuHooks";
+import { IAlbumTrack } from "../types";
 
 interface IProps {
   artistTracks: any; //change
   index: number;
-  track: any; //change
+  track: IAlbumTrack;
 }
 
 const PopularTracks: FC<IProps> = ({ artistTracks }) => {

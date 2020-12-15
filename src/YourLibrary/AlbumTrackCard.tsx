@@ -1,12 +1,13 @@
 import React, { FC } from "react";
 import StyledAlbumTracks from "../styles/YourLibrary/albumTracks";
 import toggleSongMenuHook from "../../src/toggleSongMenuHook";
+import { IAlbumTrack } from "../types";
 
 interface IProps {
   toggleSongMenu: (e: boolean) => void;
   openSongMenu: boolean;
   index: number;
-  track: any; //change
+  track: IAlbumTrack;
 }
 
 const convertMilliseconds = (milliseconds) => {
@@ -17,6 +18,7 @@ const convertMilliseconds = (milliseconds) => {
 };
 const AlbumTrackCard: FC<IProps> = ({ track, index }) => {
   const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
+  console.log("fff", track);
 
   return (
     <StyledAlbumTracks>

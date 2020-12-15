@@ -1,12 +1,13 @@
 import { FC } from "react";
 import StyledPopularTracks from "../styles/YourLibrary/popularTracks";
 import toggleSongMenuHook from "../../src/toggleSongMenuHook";
+import { IPopularTrack } from "../types";
 
 interface IProps {
   toggleSongMenu: (e: boolean) => void;
   openSongMenu: boolean;
   index: number;
-  track: any; //change
+  track: IPopularTrack;
 }
 
 const convertMilliseconds = (milliseconds) => {
@@ -17,7 +18,6 @@ const convertMilliseconds = (milliseconds) => {
 };
 const PopularTrackCard: FC<IProps> = ({ track, index }) => {
   const { toggleSongMenu, openSongMenu } = toggleSongMenuHook();
-
   return (
     <StyledPopularTracks>
       <div key={track.id} className="song-container">
